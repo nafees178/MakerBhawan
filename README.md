@@ -1,4 +1,4 @@
-# Maker Bhawan
+# Maker Bhawan Frontend
 
 A modern, responsive web application for the Maker Bhawan innovation hub and maker space at IIT Jodhpur.
 
