@@ -43,7 +43,7 @@ export default function DockNavigation() {
   };
 
   return (
-    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
+    <div className="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-50">
       <div className="dock rounded-2xl px-4 py-3">
         <div className="flex items-center space-x-1">
           {navItems.map((item) => {

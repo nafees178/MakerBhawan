@@ -16,7 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <footer className="w-full text-center py-4 text-xs text-muted-foreground">
+          © 2025 Maker Bhawan. Made by Nafees and Harish, IITJ.
+        </footer>
+      </body>
     </html>
   );
 }
