@@ -3,6 +3,13 @@
 import { ChevronDown } from 'lucide-react';
 
 export default function HomeSection() {
+  const handleExploreClick = () => {
+    const el = document.getElementById('projects');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center relative hero-grid">
       <div className="max-w-6xl mx-auto px-4">
@@ -31,7 +38,7 @@ export default function HomeSection() {
             Where engineering excellence meets cutting-edge innovation
           </p>
           
-          <button className="px-8 py-4 accent-gradient text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium">
+          <button className="px-8 py-4 accent-gradient text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium" onClick={handleExploreClick}>
             Explore Our Work
           </button>
         </div>
