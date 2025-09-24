@@ -136,14 +136,14 @@ const teamMembers = [
   },
   {
     id: 11,
-    name: 'Nisarg Upadhyaya',
+    name: 'Raghuveer Kulkarni',
     role: 'Core Team',
     department: 'Student Team',
     image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
     bio: 'Member of the Core Team',
     social: {
       linkedin: '#',
-      email: 'nisarg@example.com',
+      email: 'raghuveer@example.com',
       github: '#'
     }
   },
@@ -162,14 +162,14 @@ const teamMembers = [
   },
   {
     id: 13,
-    name: 'Raghuveer Kulkarni',
+    name: 'Nisarg Upadhyaya',
     role: 'Core Team',
     department: 'Student Team',
     image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
     bio: 'Member of the Core Team',
     social: {
       linkedin: '#',
-      email: 'raghuveer@example.com',
+      email: 'nisarg@example.com',
       github: '#'
     }
   },
@@ -186,71 +186,7 @@ const teamMembers = [
       github: '#'
     }
   },
-  {
-    id: 15,
-    name: 'Mohit Deharkar',
-    role: 'Student Volunteer',
-    department: 'Student Team',
-    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
-    bio: 'Working as Student Volunteer',
-    social: {
-      linkedin: '#',
-      email: 'mohit@example.com',
-      github: '#'
-    }
-  },
-  {
-    id: 16,
-    name: 'Sri Raghava Chittanoor',
-    role: 'Student Volunteer',
-    department: 'Student Team',
-    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
-    bio: 'Working as Student Volunteer',
-    social: {
-      linkedin: '#',
-      email: 'sriraghava@example.com',
-      github: '#'
-    }
-  },
-  {
-    id: 17,
-    name: 'Aryan Ashok Jain',
-    role: 'Student Volunteer',
-    department: 'Student Team',
-    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
-    bio: 'Working as Student Volunteer',
-    social: {
-      linkedin: '#',
-      email: 'aryan@example.com',
-      github: '#'
-    }
-  },
-  {
-    id: 18,
-    name: 'Taksh Mehta',
-    role: 'Student Volunteer',
-    department: 'Student Team',
-    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
-    bio: 'Working as Student Volunteer',
-    social: {
-      linkedin: '#',
-      email: 'taksh@example.com',
-      github: '#'
-    }
-  },
-  {
-    id: 19,
-    name: 'Himkesh Tak',
-    role: 'Student Volunteer',
-    department: 'Student Team',
-    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
-    bio: 'Working as Student Volunteer',
-    social: {
-      linkedin: '#',
-      email: 'himkesh@example.com',
-      github: '#'
-    }
-  }
+  
 ];
 
 export default function TeamSection() {
