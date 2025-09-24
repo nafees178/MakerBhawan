@@ -5,79 +5,248 @@ import { Linkedin, Mail, Github } from 'lucide-react';
 const teamMembers = [
   {
     id: 1,
-    name: 'Person 1',
-    role: 'Director',
-    department: 'Mechanical Engineering',
-    image: 'https://via.placeholder.com/200x200/333333/ffffff?text=P1',
-    bio: 'Leading research in advanced manufacturing, robotics, and sustainable technologies',
+    name: 'Yash Golani',
+    role: 'General Secretary ACAC',
+    department: 'Student Affairs',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Serving as General Secretary ACAC',
     social: {
       linkedin: '#',
-      email: 'person1@iitj.ac.in',
+      email: 'yashgolani@example.com',
       github: '#'
     }
   },
   {
     id: 2,
-    name: 'Person 2',
-    role: 'Research Head',
-    department: 'Computer Science & AI',
-    image: 'https://via.placeholder.com/200x200/333333/ffffff?text=P2',
-    bio: 'Expert in artificial intelligence, machine learning, and intelligent systems',
+    name: 'Tharakadatta G Hegde',
+    role: 'General Secretary SS',
+    department: 'Student Affairs',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Serving as General Secretary SS',
     social: {
       linkedin: '#',
-      email: 'person2@iitj.ac.in',
+      email: 'tharakadatta@example.com',
       github: '#'
     }
   },
   {
     id: 3,
-    name: 'Person 3',
-    role: 'Technical Lead',
-    department: 'Electrical Engineering',
-    image: 'https://via.placeholder.com/200x200/333333/ffffff?text=P3',
-    bio: 'Specializing in power systems, renewable energy, and smart grid technologies',
+    name: 'Sambhav Jha',
+    role: 'VP BCCA',
+    department: 'Student Affairs',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Vice President of BCCA',
     social: {
       linkedin: '#',
-      email: 'person3@iitj.ac.in',
+      email: 'sambhavjha@example.com',
       github: '#'
     }
   },
   {
     id: 4,
-    name: 'Person 4',
-    role: 'Innovation Manager',
-    department: 'Biomedical Engineering',
-    image: 'https://via.placeholder.com/200x200/333333/ffffff?text=P4',
-    bio: 'Bridging healthcare technology with engineering innovation and research',
+    name: 'Dhruva Kumar Kaushal',
+    role: 'Coordinating Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Coordinating Team',
     social: {
       linkedin: '#',
-      email: 'person4@iitj.ac.in',
+      email: 'dhruva@example.com',
       github: '#'
     }
   },
   {
     id: 5,
-    name: 'Person 5',
-    role: 'Senior Researcher',
-    department: 'Electronics & Communication',
-    image: 'https://via.placeholder.com/200x200/333333/ffffff?text=P5',
-    bio: 'Focused on embedded systems, IoT solutions, and wireless communication',
+    name: 'Rhythm Baghel',
+    role: 'Coordinating Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Coordinating Team',
     social: {
       linkedin: '#',
-      email: 'person5@iitj.ac.in',
+      email: 'rhythm@example.com',
       github: '#'
     }
   },
   {
     id: 6,
-    name: 'Person 6',
-    role: 'Operations Manager',
-    department: 'Industrial Design',
-    image: 'https://via.placeholder.com/200x200/333333/ffffff?text=P6',
-    bio: 'Expert in design thinking, project management, and innovation processes',
+    name: 'Anuj Patil',
+    role: 'Coordinating Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Coordinating Team',
     social: {
       linkedin: '#',
-      email: 'person6@iitj.ac.in',
+      email: 'anuj@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 7,
+    name: 'Pragay',
+    role: 'Core Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Core Team',
+    social: {
+      linkedin: '#',
+      email: 'pragay@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 8,
+    name: 'Aradhya Mahajan',
+    role: 'Core Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Core Team',
+    social: {
+      linkedin: '#',
+      email: 'aradhya@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 9,
+    name: 'Mrudhul Tula',
+    role: 'Core Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Core Team',
+    social: {
+      linkedin: '#',
+      email: 'mrudhul@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 10,
+    name: 'Raghuveer Kulkarni',
+    role: 'Core Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Core Team',
+    social: {
+      linkedin: '#',
+      email: 'raghuveer@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 11,
+    name: 'Nisarg Upadhyaya',
+    role: 'Core Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Core Team',
+    social: {
+      linkedin: '#',
+      email: 'nisarg@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 12,
+    name: 'Goutham A.S',
+    role: 'Core Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Core Team',
+    social: {
+      linkedin: '#',
+      email: 'goutham@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 13,
+    name: 'Agam Harpreet Singh',
+    role: 'Core Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Core Team',
+    social: {
+      linkedin: '#',
+      email: 'agam@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 14,
+    name: 'Tashir Ahmad',
+    role: 'Core Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Core Team',
+    social: {
+      linkedin: '#',
+      email: 'tashir@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 15,
+    name: 'Mohit Deharkar',
+    role: 'Student Volunteer',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Working as Student Volunteer',
+    social: {
+      linkedin: '#',
+      email: 'mohit@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 16,
+    name: 'Sri Raghava Chittanoor',
+    role: 'Student Volunteer',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Working as Student Volunteer',
+    social: {
+      linkedin: '#',
+      email: 'sriraghava@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 17,
+    name: 'Aryan Ashok Jain',
+    role: 'Student Volunteer',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Working as Student Volunteer',
+    social: {
+      linkedin: '#',
+      email: 'aryan@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 18,
+    name: 'Taksh Mehta',
+    role: 'Student Volunteer',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Working as Student Volunteer',
+    social: {
+      linkedin: '#',
+      email: 'taksh@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 19,
+    name: 'Himkesh Tak',
+    role: 'Student Volunteer',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Working as Student Volunteer',
+    social: {
+      linkedin: '#',
+      email: 'himkesh@example.com',
       github: '#'
     }
   }
@@ -85,7 +254,7 @@ const teamMembers = [
 
 export default function TeamSection() {
   return (
-    <section id="team" className="section-padding">
+    <section id="team" className="section-padding ">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-bold mb-8 gradient-text">
@@ -96,11 +265,11 @@ export default function TeamSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           {teamMembers.map((member, index) => (
             <div
               key={member.id}
-              className="team-card sleek-card rounded-2xl p-8 transition-all duration-300"
+              className="team-card sleek-card rounded-2xl p-8 transition-all duration-300 w-[350px]"
               style={{animationDelay: `${index * 0.1}s`}}
             >
               <div className="relative mb-8">
@@ -112,7 +281,7 @@ export default function TeamSection() {
                   />
                 </div>
                 <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
-                  <div className="sleek-card px-4 py-2 rounded-full">
+                  <div className="sleek-card px-4 py-2 rounded-full flex items-center justify-center text-center">
                     <span className="text-sm text-blue-400 font-medium">
                       {member.role}
                     </span>
