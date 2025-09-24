@@ -83,33 +83,7 @@ const teamMembers = [
   },
   {
     id: 7,
-    name: 'Pragay',
-    role: 'Core Team',
-    department: 'Student Team',
-    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
-    bio: 'Member of the Core Team',
-    social: {
-      linkedin: '#',
-      email: 'pragay@example.com',
-      github: '#'
-    }
-  },
-  {
-    id: 8,
-    name: 'Aradhya Mahajan',
-    role: 'Core Team',
-    department: 'Student Team',
-    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
-    bio: 'Member of the Core Team',
-    social: {
-      linkedin: '#',
-      email: 'aradhya@example.com',
-      github: '#'
-    }
-  },
-  {
-    id: 9,
-    name: 'Mrudhul Tula',
+     name: 'Mrudhul Tula',
     role: 'Core Team',
     department: 'Student Team',
     image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
@@ -118,18 +92,45 @@ const teamMembers = [
       linkedin: '#',
       email: 'mrudhul@example.com',
       github: '#'
+    
     }
   },
   {
-    id: 10,
-    name: 'Raghuveer Kulkarni',
+    id: 8,
+    name: 'Goutham A.S',
     role: 'Core Team',
     department: 'Student Team',
     image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
     bio: 'Member of the Core Team',
     social: {
       linkedin: '#',
-      email: 'raghuveer@example.com',
+      email: 'agam@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 9,
+    name: 'Agam Harpreet Singh',
+    role: 'Core Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Core Team',
+    social: {
+      linkedin: '#',
+      email: 'agam@example.com',
+      github: '#'
+    }
+  },
+  {
+    id: 10,
+    name: 'Tashir Ahmed',
+    role: 'Core Team',
+    department: 'Student Team',
+    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    bio: 'Member of the Core Team',
+    social: {
+      linkedin: '#',
+      email: 'tashir@example.com',
       github: '#'
     }
   },
@@ -148,40 +149,40 @@ const teamMembers = [
   },
   {
     id: 12,
-    name: 'Goutham A.S',
+    name: 'Pragay',
     role: 'Core Team',
     department: 'Student Team',
     image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
     bio: 'Member of the Core Team',
     social: {
       linkedin: '#',
-      email: 'goutham@example.com',
+      email: 'pragay@example.com',
       github: '#'
     }
   },
   {
     id: 13,
-    name: 'Agam Harpreet Singh',
+    name: 'Raghuveer Kulkarni',
     role: 'Core Team',
     department: 'Student Team',
     image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
     bio: 'Member of the Core Team',
     social: {
       linkedin: '#',
-      email: 'agam@example.com',
+      email: 'raghuveer@example.com',
       github: '#'
     }
   },
   {
     id: 14,
-    name: 'Tashir Ahmad',
+    name: 'Aradhya Mahajan',
     role: 'Core Team',
     department: 'Student Team',
     image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
     bio: 'Member of the Core Team',
     social: {
       linkedin: '#',
-      email: 'tashir@example.com',
+      email: 'aradhya@example.com',
       github: '#'
     }
   },
