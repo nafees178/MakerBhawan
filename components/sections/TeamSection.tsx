@@ -97,14 +97,14 @@ const teamMembers = [
   },
   {
     id: 8,
-    name: 'Goutham A.S',
+    name: 'Sohom Sarkar',
     role: 'Core Team',
     department: 'Student Team',
     image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
     bio: 'Member of the Core Team',
     social: {
       linkedin: '#',
-      email: 'goutham@example.com',
+      email: 'sohom@example.com',
       github: '#'
     }
   },
@@ -123,14 +123,14 @@ const teamMembers = [
   },
   {
     id: 10,
-    name: 'Sohom Sarkar',
+    name: 'Goutham A.S',
     role: 'Core Team',
     department: 'Student Team',
     image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
     bio: 'Member of the Core Team',
     social: {
       linkedin: '#',
-      email: 'sohom@example.com',
+      email: 'goutham@example.com',
       github: '#'
     }
   },
