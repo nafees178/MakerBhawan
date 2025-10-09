@@ -23,7 +23,7 @@ export default function HomeSection() {
 
         <div className="animate-fade-in relative z-10">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold gradient-text tracking-tight leading-none mb-8">
-            MAKER BHAWAN
+            Anand Rathi Tinkering Lab
           </h1>
           
           <h2 className="text-2xl md:text-4xl text-gray-300 mb-6 font-light">

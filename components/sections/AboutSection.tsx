@@ -4,7 +4,7 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-bold mb-8 gradient-text">
-            About Maker Bhawan
+            About Anand Rathi Tinkering Lab
           </h2>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             A premier innovation ecosystem fostering technological advancement and research excellence

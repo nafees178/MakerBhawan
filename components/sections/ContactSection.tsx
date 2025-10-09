@@ -28,7 +28,6 @@ export default function ContactSection() {
                   <div>
                     <h4 className="font-semibold text-white mb-2 text-lg">Email</h4>
                     <p className="text-gray-300">makerbhawan@iitj.ac.in</p>
-                    <p className="text-gray-300">research@makerbhawan.in</p>
                   </div>
                 </div>
 
@@ -38,8 +37,8 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-2 text-lg">Phone</h4>
-                    <p className="text-gray-300">+91 291-280-1234</p>
-                    <p className="text-gray-300">+91 291-280-5678</p>
+                    <p className="text-gray-300">+91 XXXXXXXXXX</p>
+                    <p className="text-gray-300">+91 XXXXXXXXXX</p>
                   </div>
                 </div>
 
@@ -50,7 +49,7 @@ export default function ContactSection() {
                   <div>
                     <h4 className="font-semibold text-white mb-2 text-lg">Address</h4>
                     <p className="text-gray-300 leading-relaxed">
-                      Maker Bhawan, IIT Jodhpur<br />
+                      Anand Rathi Tinkering Lab, IIT Jodhpur<br />
                       NH 65, Nagaur Road<br />
                       Karwar, Jodhpur - 342030<br />
                       Rajasthan, India
