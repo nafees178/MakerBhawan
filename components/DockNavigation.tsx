@@ -1,45 +1,23 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { Home, User, Wrench, FolderOpen, Calendar, Users, Camera, Mail } from 'lucide-react';
 
 const navItems = [
-  { id: 'home', icon: Home, label: 'Home' },
-  { id: 'about', icon: User, label: 'About' },
-  { id: 'facilities', icon: Wrench, label: 'Facilities' },
-  { id: 'projects', icon: FolderOpen, label: 'Projects' },
-  { id: 'events', icon: Calendar, label: 'Events' },
-  { id: 'team', icon: Users, label: 'Team' },
-  { id: 'gallery', icon: Camera, label: 'Gallery' },
-  { id: 'contact', icon: Mail, label: 'Contact' },
+  { id: '/', icon: Home, label: 'Home' },
+  { id: '/people', icon: Users, label: 'People' },
+  { id: '/events', icon: Calendar, label: 'Events' },
+  { id: '/projects', icon: FolderOpen, label: 'Projects' },
+  { id: '/inventory', icon: Wrench, label: 'Inventory' },
 ];
 
 export default function DockNavigation() {
-  const [activeSection, setActiveSection] = useState('home');
+  const router = useRouter();
+  const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = navItems.map(item => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 200;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navItems[i].id);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const navigateToPage = (path: string) => {
+    router.push(path);
   };
 
   return (
@@ -51,9 +29,9 @@ export default function DockNavigation() {
             return (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => navigateToPage(item.id)}
                 className={`dock-item p-3 rounded-xl transition-all duration-400 group relative ${
-                  activeSection === item.id 
+                  pathname === item.id 
                     ? 'active bg-blue-600/20 text-blue-400' 
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}

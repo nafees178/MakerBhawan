@@ -8,7 +8,7 @@ export const getEvents = async () => {
   await connectToMongoDB();
 
   try {
-    const event = await Events.find();
+    const event = await Events.find().sort({ createdAt: -1 });
     return JSON.parse(JSON.stringify(event));
   } catch (error) {
     console.log(error);
@@ -21,11 +21,11 @@ export const getProjects = async () => {
   await connectToMongoDB();
 
   try {
-    const project = await Projects.find();
+    const project = await Projects.find().sort({ createdAt: -1 });
     return JSON.parse(JSON.stringify(project));
   } catch (error) {
     console.log(error);
-    return { message: "error fetching events" };
+    return { message: "error fetching projects" };
   }
 };
 
@@ -34,7 +34,7 @@ export const getInventory = async () => {
   await connectToMongoDB();
 
   try {
-    const inventory = await Inventory.find();
+    const inventory = await Inventory.find().sort({ createdAt: -1 });
     return JSON.parse(JSON.stringify(inventory));
   } catch (error) {
     console.log(error);

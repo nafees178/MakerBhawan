@@ -4,9 +4,6 @@ import DockNavigation from '@/components/DockNavigation';
 import HomeSection from '@/components/sections/HomeSection';
 import AboutSection from '@/components/sections/AboutSection';
 import FacilitiesSection from '@/components/sections/FacilitiesSection';
-import ProjectsSection from '@/components/sections/ProjectsSection';
-import EventsSection from '@/components/sections/EventsSection';
-import TeamSection from '@/components/sections/TeamSection';
 import GallerySection from '@/components/sections/GallerySection';
 import ContactSection from '@/components/sections/ContactSection';
 
@@ -25,7 +22,7 @@ to get data from the database, the serivce is already setup
 u just have to use the 2 functions from action.ts to get events, project, inventory
 the schema of events, projects, inventory can be seen in the models folder where u can also find the interfaces for the three
 i have already setup all the database connections... the only thing u need to do is setup a environmental variable
-for MONGODB_URI... which i have sent u on whatsapp
+
 
 for the events
 -> render a card for every event which shows the title(name) of the event and render the html content(description) in a div
@@ -45,9 +42,6 @@ for the Inventory
 Overall:
 -> make a good responsive multi paged app (use router)... and use consistent styling across the app...
 -> for any more doubts... approach me
--> Please dont forget to add the connection string to .env in your local development enviroment and in the vercel secrets
--> the name of the secret is MONGODB_URI.
--> the connection string can be found in our whatsapp chats.
 
 Post Notes:
 -> to render a html content in a div use the following snippet.
@@ -62,10 +56,7 @@ export default function Home() {
       <HomeSection />
       <AboutSection />
       <FacilitiesSection />
-      <ProjectsSection />
-      <EventsSection />
-      <TeamSection />
-      <GallerySection />
+      {/* <GallerySection /> */}
       <ContactSection />
       
       <DockNavigation />

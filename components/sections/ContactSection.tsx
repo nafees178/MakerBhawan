@@ -1,28 +1,8 @@
 "use client";
 
-import { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
-
   return (
     <section id="contact" className="section-padding">
       <div className="max-w-7xl mx-auto">
@@ -35,8 +15,7 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
-          {/* Contact Info */}
+        <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
             <div className="sleek-card rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-white mb-8">Get In Touch</h3>
@@ -98,81 +77,6 @@ export default function ContactSection() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="sleek-card rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-white mb-8">Send Message</h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-3">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-4 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Your full name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-3">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-4 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-3">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-4 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="What's this about?"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-3">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-4 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-                  placeholder="Tell us about your project or inquiry..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-3 px-6 py-4 accent-gradient text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300 group"
-              >
-                <Send size={20} className="group-hover:translate-x-1 transition-transform" />
-                Send Message
-              </button>
-            </form>
           </div>
         </div>
       </div>
