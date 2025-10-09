@@ -8,7 +8,11 @@ export async function connectToMongoDB() {
     return cachedConnection;
   }
   try {
-    const cnx = await mongoose.connect("mongodb+srv://b25bb1012_db_user:b25bb1012@maker-bhawan.phougbq.mongodb.net/?retryWrites=true&w=majority&appName=maker-bhawan");
+    const mongoUri = "mongodb+srv://b25bb1012_db_user:b25bb1012@maker-bhawan.phougbq.mongodb.net/?retryWrites=true&w=majority&appName=maker-bhawan";
+    if (!mongoUri) {
+      throw new Error('MONGODB_URI is not set');
+    }
+    const cnx = await mongoose.connect(mongoUri);
     cachedConnection = cnx.connection;
     console.log("New mongodb connection established");
     return cachedConnection;

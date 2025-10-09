@@ -12,7 +12,7 @@ export default function InventoryPage() {
   useEffect(() => {
     const fetchInventory = async () => {
       try {
-        const response = await fetch('/api/inventory');
+        const response = await fetch('/api/inventory', { cache: 'no-store' });
         const inventoryData = await response.json();
         // Filter out hidden items
         const visibleItems = Array.isArray(inventoryData) 
