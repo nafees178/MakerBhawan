@@ -27,7 +27,7 @@ const projectSchema = new mongoose.Schema<IProjectsDocument>(
   }
 );
 
-const Projects: Model<IProjectsDocument> =
-  mongoose.models?.Projects || mongoose.model("Projects", projectSchema);
+const Projects = (mongoose.models?.Projects as Model<IProjectsDocument>) || 
+  mongoose.model<IProjectsDocument>("Projects", projectSchema);
 
 export default Projects;

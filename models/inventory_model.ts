@@ -11,7 +11,7 @@ export interface IInventoryDocument extends IInventory, Document {
   updatedAt: Date;
 }
 
-const eventSchema = new mongoose.Schema<IInventoryDocument>(
+const inventorySchema = new mongoose.Schema<IInventoryDocument>(
   {
     name: {
         type: String,
@@ -32,7 +32,7 @@ const eventSchema = new mongoose.Schema<IInventoryDocument>(
   }
 );
 
-const Inventory: Model<IInventoryDocument> =
-  mongoose.models?.Inventory || mongoose.model("Inventory", eventSchema);
+const Inventory = (mongoose.models?.Inventory as Model<IInventoryDocument>) || 
+  mongoose.model<IInventoryDocument>("Inventory", inventorySchema);
 
 export default Inventory;
