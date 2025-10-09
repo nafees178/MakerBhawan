@@ -41,18 +41,18 @@ export default function InventoryPage() {
       {/* Background Pattern */}
       <div className="absolute inset-0 hero-grid opacity-30"></div>
       
-      <div className="relative container mx-auto px-6 py-16">
+      <div className="relative container mx-auto px-4 md:px-6 py-8 md:py-16">
         {/* Header Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-6xl font-bold gradient-text mb-6">
+        <div className="text-center mb-8 md:mb-16">
+          <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-4 md:mb-6">
             Inventory
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-8 px-4">
             Track and manage all available tools, equipment, and resources
           </p>
           
           {/* Search Bar */}
-          <div className="max-w-md mx-auto">
+          <div className="max-w-md mx-auto px-4">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,47 +77,89 @@ export default function InventoryPage() {
               {filteredInventory.map((item: IInventory & { createdAt: string }, index: number) => (
                 <div 
                   key={index}
-                  className="group relative sleek-card rounded-2xl p-6 shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 hover:scale-[1.01] project-card"
+                  className="group relative sleek-card rounded-2xl p-4 md:p-6 shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 hover:scale-[1.01] project-card"
                 >
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-blue-600/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
                   {/* Content */}
-                  <div className="relative z-10 flex items-center gap-6">
-                    {/* Item Icon */}
-                    <div className="w-12 h-12 accent-gradient rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                      </svg>
-                    </div>
-                    
-                    {/* Item Details */}
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-white group-hover:text-blue-200 transition-colors duration-300">
-                        {item.name}
-                      </h3>
-                    </div>
-                    
-                    {/* Quantity */}
-                    <div className="flex items-center gap-4">
-                      <span className="text-sm text-gray-400">Quantity:</span>
-                      <span className="text-2xl font-bold text-blue-400">
-                        {item.num_items}
-                      </span>
-                    </div>
-                    
-                    {/* Creation Date */}
-                    {item.createdAt && (
-                      <div className="flex items-center text-xs text-gray-400">
-                        <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        {new Date(item.createdAt).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric'
-                        })}
+                  <div className="relative z-10">
+                    {/* Mobile Layout */}
+                    <div className="flex flex-col space-y-4 md:hidden">
+                      {/* Top Row: Icon and Name */}
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 accent-gradient rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                          </svg>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base font-bold text-white group-hover:text-blue-200 transition-colors duration-300 truncate">
+                            {item.name}
+                          </h3>
+                        </div>
                       </div>
-                    )}
+                      
+                      {/* Bottom Row: Quantity and Date */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-gray-400">Qty:</span>
+                          <span className="text-lg font-bold text-blue-400">
+                            {item.num_items}
+                          </span>
+                        </div>
+                        
+                        {item.createdAt && (
+                          <div className="flex items-center text-xs text-gray-400">
+                            <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            {new Date(item.createdAt).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric'
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    
+                    {/* Desktop Layout */}
+                    <div className="hidden md:flex items-center gap-6">
+                      {/* Item Icon */}
+                      <div className="w-12 h-12 accent-gradient rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                      </div>
+                      
+                      {/* Item Details */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg font-bold text-white group-hover:text-blue-200 transition-colors duration-300 truncate">
+                          {item.name}
+                        </h3>
+                      </div>
+                      
+                      {/* Quantity */}
+                      <div className="flex items-center gap-4">
+                        <span className="text-sm text-gray-400">Quantity:</span>
+                        <span className="text-2xl font-bold text-blue-400">
+                          {item.num_items}
+                        </span>
+                      </div>
+                      
+                      {/* Creation Date */}
+                      {item.createdAt && (
+                        <div className="flex items-center text-xs text-gray-400">
+                          <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                          {new Date(item.createdAt).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric'
+                          })}
+                        </div>
+                      )}
+                    </div>
                   </div>
                   
                   {/* Hover Effect Border */}
@@ -126,16 +168,16 @@ export default function InventoryPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-20">
-              <div className="w-24 h-24 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-center py-12 md:py-20 px-4">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                <svg className="w-10 h-10 md:w-12 md:h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-300 mb-4">
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-300 mb-3 md:mb-4">
                 {searchTerm ? 'No Items Found' : 'No Items Available'}
               </h3>
-              <p className="text-gray-400 text-lg max-w-md mx-auto">
+              <p className="text-gray-400 text-base md:text-lg max-w-md mx-auto">
                 {searchTerm 
                   ? `No items match "${searchTerm}". Try a different search term.`
                   : "Our inventory is currently being updated. Check back soon to see available tools and equipment!"
