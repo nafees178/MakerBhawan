@@ -49,9 +49,20 @@ export default function HomeSection() {
 
           <p className="text-xl text-blue-400 font-medium mb-12">IIT Jodhpur</p>
 
-          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-16 leading-relaxed">
-            Where engineering excellence meets cutting-edge innovation
-          </p>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin:10,
+              padding:10           
+            }}
+          >
+              Sponsored by
+            <Image style={{
+              marginLeft: 10
+            }} width={100} height={200} src="images/maker-logo.png" alt="maker logo"/>
+          </div>
 
           <Link href={"/projects"}>
             <button
