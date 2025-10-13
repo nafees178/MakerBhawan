@@ -157,9 +157,9 @@ const teamMembers = [
     social: {
       linkedin: 'https://www.linkedin.com/in/raghuveer-kulkarni-185450281/',
       email: 'b23es1020@iitj.ac.in',
-      github: '#'
+    github: '#'
     }
-  // },
+  },
   // {
   //   id: 13,
   //   name: 'Pragay',

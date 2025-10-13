@@ -1,6 +1,8 @@
 "use client";
 
 import { ChevronDown } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function HomeSection() {
   const handleExploreClick = () => {
@@ -11,7 +13,10 @@ export default function HomeSection() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center relative hero-grid">
+    <section
+      id="home"
+      className="min-h-screen flex flex-col justify-center items-center text-center relative hero-grid"
+    >
       <div className="max-w-6xl mx-auto px-4">
         {/* Floating Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -22,28 +27,43 @@ export default function HomeSection() {
         </div>
 
         <div className="animate-fade-in relative z-10">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold gradient-text tracking-tight leading-none mb-8">
+          <div className="mb-8">
+            <Image
+              style={{
+                filter: "invert(1)",
+              }}
+              width={900}
+              height={1000}
+              src="images/Logo-tr.png"
+              alt="Logo"
+            />
+          </div>
+
+          <h1 className="text-6xl md:text-xl lg:text-5xl font-bold gradient-text tracking-tight leading-none mb-0">
             Anand Rathi Tinkerer's Lab
           </h1>
-          
-          <h2 className="text-2xl md:text-4xl text-gray-300 mb-6 font-light">
-            Innovation Hub & Tinkerer Lab
+
+          <h2 className="text-2xl md:text-2xl text-gray-300 mb-4 font-light">
+            Innovation Hub
           </h2>
-          
-          <p className="text-xl text-blue-400 font-medium mb-12">
-            IIT Jodhpur
-          </p>
-          
+
+          <p className="text-xl text-blue-400 font-medium mb-12">IIT Jodhpur</p>
+
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-16 leading-relaxed">
             Where engineering excellence meets cutting-edge innovation
           </p>
-          
-          <button className="px-8 py-4 accent-gradient text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium" onClick={handleExploreClick}>
-            Explore Our Work
-          </button>
+
+          <Link href={"/projects"}>
+            <button
+              className="px-8 py-4 accent-gradient text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
+              onClick={handleExploreClick}
+            >
+              Explore Our Work
+            </button>
+          </Link>
         </div>
       </div>
-      
+
       <div className="animate-bounce absolute bottom-8">
         <ChevronDown size={28} className="text-gray-400" />
       </div>
