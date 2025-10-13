@@ -8,7 +8,7 @@ const teamMembers = [
     name: 'Yash Golani',
     role: 'General Secretary ACAC',
     department: 'Student Affairs',
-    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    image: 'https://media.licdn.com/dms/image/v2/D4D03AQG9grbISONcVg/profile-displayphoto-shrink_800_800/B4DZb63p7PGkAc-/0/1747965618989?e=1762992000&v=beta&t=ie7NcucVmgohrnc1rTsyajxg7ujWXK3ywJSTBCbOR0c',
     bio: 'Serving as General Secretary ACAC',
     social: {
       linkedin: '#',
@@ -21,7 +21,7 @@ const teamMembers = [
     name: 'Tharakadatta G Hegde',
     role: 'General Secretary SS',
     department: 'Student Affairs',
-    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    image: 'https://media.licdn.com/dms/image/v2/D5603AQF3GJ8gI-p5Xg/profile-displayphoto-shrink_400_400/B56Zaa7cMFG4Ag-/0/1746355996152?e=1762992000&v=beta&t=Tgr7oapl5sfPpKuTDnA6IZ_U8usMyt3pfLCZDpytwnY',
     bio: 'Serving as General Secretary SS',
     social: {
       linkedin: '#',
@@ -34,7 +34,7 @@ const teamMembers = [
     name: 'Sambhav Jha',
     role: 'VP BCCA',
     department: 'Student Affairs',
-    image: 'https://t4.ftcdn.net/jpg/05/89/93/27/360_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg',
+    image: 'https://media.licdn.com/dms/image/v2/D5603AQHySTqEmnzraQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1692857602743?e=1762992000&v=beta&t=rM6cvduJjZSBOJNiMDsOAMie2WHtA_nb4A1uIC0_9h0',
     bio: 'Vice President of BCCA',
     social: {
       linkedin: '#',
