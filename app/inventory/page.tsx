@@ -8,6 +8,7 @@ export default function InventoryPage() {
   const [inventory, setInventory] = useState<(IInventory & { createdAt: string })[]>([]);
   const [filteredInventory, setFilteredInventory] = useState<(IInventory & { createdAt: string })[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchInventory = async () => {
@@ -24,6 +25,8 @@ export default function InventoryPage() {
         console.error('Error fetching inventory:', error);
         setInventory([]);
         setFilteredInventory([]);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchInventory();
@@ -38,6 +41,11 @@ export default function InventoryPage() {
 
   return (
     <main className="relative min-h-screen">
+      {isLoading && (
+        <div className="fixed top-0 left-0 right-0 h-1 z-50">
+          <div className="h-full w-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 animate-pulse"></div>
+        </div>
+      )}
       {/* Background Pattern */}
       <div className="absolute inset-0 hero-grid opacity-30"></div>
       
@@ -72,7 +80,13 @@ export default function InventoryPage() {
         
         {/* Inventory List */}
         <div className="max-w-7xl mx-auto">
-          {filteredInventory.length > 0 ? (
+          {isLoading ? (
+            <div className="space-y-4">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="h-20 rounded-2xl bg-gray-800/40 border border-gray-700/60 animate-pulse" />
+              ))}
+            </div>
+          ) : filteredInventory.length > 0 ? (
             <div className="space-y-4">
               {filteredInventory.map((item: IInventory & { createdAt: string }, index: number) => (
                 <div 

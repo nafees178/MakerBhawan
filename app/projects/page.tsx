@@ -8,6 +8,7 @@ export default function ProjectsPage() {
   const [projects, setProjects] = useState<(IProjects & { createdAt: string })[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<(IProjects & { createdAt: string })[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -20,6 +21,8 @@ export default function ProjectsPage() {
         console.error('Error fetching projects:', error);
         setProjects([]);
         setFilteredProjects([]);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchProjects();
@@ -35,6 +38,11 @@ export default function ProjectsPage() {
 
   return (
     <main className="relative min-h-screen">
+      {isLoading && (
+        <div className="fixed top-0 left-0 right-0 h-1 z-50">
+          <div className="h-full w-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 animate-pulse"></div>
+        </div>
+      )}
       {/* Background Pattern */}
       <div className="absolute inset-0 hero-grid opacity-30"></div>
       
@@ -69,7 +77,13 @@ export default function ProjectsPage() {
         
         {/* Projects List */}
         <div className="max-w-7xl mx-auto">
-          {Array.isArray(filteredProjects) && filteredProjects.length > 0 ? (
+          {isLoading ? (
+            <div className="space-y-6">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="h-40 rounded-3xl bg-gray-800/40 border border-gray-700/60 animate-pulse" />
+              ))}
+            </div>
+          ) : Array.isArray(filteredProjects) && filteredProjects.length > 0 ? (
             <div className="space-y-6">
               {filteredProjects.map((project: IProjects & { createdAt: string }, index: number) => (
                 <div 
