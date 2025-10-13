@@ -2,7 +2,8 @@ import mongoose, { Document, Model } from "mongoose";
 
 export interface IEvents {
     name: string,
-    description: string
+    description: string,
+    date_event: Date,
 }
 
 export interface IEventsDocument extends IEvents, Document {
@@ -20,6 +21,10 @@ const eventSchema = new mongoose.Schema<IEventsDocument>(
       type: String,
       required: true,
     },
+    date_event: {
+      type: Date,
+      required: true,
+    }
   },
   {
     // Automatically add 'createdAt' and 'updatedAt' fields to the document
