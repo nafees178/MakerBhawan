@@ -1,17 +1,8 @@
 "use client";
 
-import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function HomeSection() {
-  const handleExploreClick = () => {
-    const el = document.getElementById('projects');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section
       id="home"
@@ -40,7 +31,7 @@ export default function HomeSection() {
           </div>
 
           <h1 className="text-6xl md:text-xl lg:text-5xl font-bold gradient-text tracking-tight leading-none mb-0">
-            Anand Rathi Tinkerer's Lab
+            Anand Rathi Tinkerers' Lab
           </h1>
 
           <h2 className="text-2xl md:text-2xl text-gray-300 mb-4 font-light">
@@ -55,7 +46,7 @@ export default function HomeSection() {
               alignItems: "center",
               justifyContent: "center",
               margin:10,
-              padding:10           
+              padding:10
             }}
           >
               Sponsored by
@@ -63,20 +54,7 @@ export default function HomeSection() {
               marginLeft: 10
             }} width={100} height={200} src="images/maker-logo.png" alt="maker logo"/>
           </div>
-
-          <Link href={"/projects"}>
-            <button
-              className="px-8 py-4 accent-gradient text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
-              onClick={handleExploreClick}
-            >
-              Explore Our Work
-            </button>
-          </Link>
         </div>
-      </div>
-
-      <div className="animate-bounce absolute bottom-8">
-        <ChevronDown size={28} className="text-gray-400" />
       </div>
     </section>
   );

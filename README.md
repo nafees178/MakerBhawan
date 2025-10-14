@@ -1,6 +1,6 @@
-# Anand Rathi Tinkering Lab Frontend
+# Anand Rathi Tinkerers' Lab Frontend
 
-A modern, responsive web application for the Anand Rathi Tinkering Lab innovation hub and maker space at IIT Jodhpur.
+A modern, responsive web application for the Anand Rathi Tinkerers' Lab innovation hub and maker space at IIT Jodhpur.
 
 ## Features
 - Home, About, Facilities, Projects, Events, Team, Gallery, and Contact sections
@@ -47,4 +47,4 @@ npm start
 ## Credits
 Made by Nafees and Harish, IIT Jodhpur
 
-© 2025 Anand Rathi Tinkering Lab. All rights reserved. 
+© 2025 Anand Rathi Tinkerers' Lab. All rights reserved. 

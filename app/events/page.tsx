@@ -176,8 +176,8 @@ export default function EventsPage() {
                 day: 'w-full h-16 md:h-20 p-0 font-semibold aria-selected:opacity-100 hover:bg-white/5 rounded-lg',
                 caption: 'flex justify-center pt-1 relative items-center',
                 caption_label: 'text-lg font-bold',
-                day_selected: 'rounded-xl bg-white text-black hover:bg-white focus:bg-white ring-1 ring-blue-400/50',
-                day_today: 'ring-1 ring-blue-400/60',
+                day_selected: 'rounded-xl bg-white text-black hover:bg-white focus:bg-white',
+                day_today: 'before:absolute before:bottom-2 before:left-1/2 before:-translate-x-1/2 before:w-1 before:h-1 before:bg-blue-400 before:rounded-full',
               }}
               onDayClick={(date) => {
                 setSelectedDate(date);
