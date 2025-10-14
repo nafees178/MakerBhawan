@@ -75,6 +75,22 @@ export default function EventsPage() {
     return map;
   }, [events]);
 
+  const currentMonthEvents = useMemo(() => {
+    const now = new Date();
+    return [...events].filter((ev) => {
+      const eventDate = new Date(ev.date_event as unknown as string);
+      return (
+        eventDate.getMonth() === now.getMonth() && 
+        eventDate.getFullYear() === now.getFullYear() &&
+        eventDate >= now // Only show events from today onwards
+      );
+    }).sort((a, b) => {
+      const da = new Date(a.date_event as unknown as string).getTime();
+      const db = new Date(b.date_event as unknown as string).getTime();
+      return da - db;
+    });
+  }, [events]);
+
   function handleEventClick(ev: IEvents & { createdAt: string }) {
     const date = new Date(ev.date_event as unknown as string);
     if (!isNaN(date.getTime())) {
@@ -136,7 +152,9 @@ export default function EventsPage() {
       <div className="absolute inset-0 hero-grid opacity-30"></div>
       <div className="relative container mx-auto px-6 py-16">
         <div className="text-center mb-12">
-          <h1 className="text-6xl font-bold gradient-text mb-4">Events Calendar</h1>
+          <h1 className="text-6xl font-bold gradient-text mb-4">
+            Events Calendar
+          </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Explore events by date. Click a highlighted day to see details.
           </p>
@@ -151,87 +169,109 @@ export default function EventsPage() {
               </Button>
             </div>
             <div className="min-h-[28rem]">
-            <Calendar
-              mode="single"
-              selected={selectedDate}
-              onSelect={setSelectedDate}
-              modifiers={{ hasEvent: eventDates }}
-              modifiersClassNames={{
-                hasEvent:
-                  "relative",
-              }}
-              captionLayout="buttons"
-              month={currentMonth}
-              onMonthChange={(m) => m && setCurrentMonth(m)}
-              showOutsideDays
-              fixedWeeks
-              className="p-6"
-              classNames={{
-                months: 'flex flex-col space-y-4',
-                head_cell: 'text-muted-foreground rounded-md font-medium text-sm text-center',
-                table: 'w-full border-collapse',
-                head_row: 'grid grid-cols-7',
-                row: 'grid grid-cols-7 mt-2',
-                cell: 'relative text-center text-sm p-0 overflow-hidden',
-                day: 'w-full h-16 md:h-20 p-0 font-semibold aria-selected:opacity-100 hover:bg-white/5 rounded-lg',
-                caption: 'flex justify-center pt-1 relative items-center',
-                caption_label: 'text-lg font-bold',
-                day_selected: 'rounded-xl bg-white text-black hover:bg-white focus:bg-white',
-                day_today: 'before:absolute before:bottom-2 before:left-1/2 before:-translate-x-1/2 before:w-1 before:h-1 before:bg-blue-400 before:rounded-full',
-              }}
-              onDayClick={(date) => {
-                setSelectedDate(date);
-                const key = date.toDateString();
-                const todays = eventsByDate.get(key) ?? [];
-                if (todays.length > 0) {
-                  const latest = todays.reduce((acc, cur) => {
-                    const at = new Date((cur as any).createdAt ?? 0).getTime();
-                    const bt = new Date((acc as any).createdAt ?? 0).getTime();
-                    return at >= bt ? cur : acc;
-                  }, todays[0]);
-                  setActiveEvent(latest);
-                  setDialogOpen(true);
-                }
-              }}
-              components={{
-                IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-                IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
-                DayContent: ({ date }) => {
+              <Calendar
+                mode="single"
+                selected={selectedDate}
+                onSelect={setSelectedDate}
+                modifiers={{ hasEvent: eventDates }}
+                modifiersClassNames={{
+                  hasEvent: "relative",
+                }}
+                captionLayout="buttons"
+                month={currentMonth}
+                onMonthChange={(m) => m && setCurrentMonth(m)}
+                showOutsideDays
+                fixedWeeks
+                className="p-6"
+                classNames={{
+                  months: "flex flex-col space-y-4",
+                  head_cell:
+                    "text-muted-foreground rounded-md font-medium text-sm text-center",
+                  table: "w-full border-collapse",
+                  head_row: "grid grid-cols-7",
+                  row: "grid grid-cols-7 mt-2",
+                  cell: "relative text-center text-sm p-0 overflow-hidden",
+                  day: "w-full h-16 md:h-20 p-0 font-semibold aria-selected:opacity-100 hover:bg-white/5 rounded-lg",
+                  caption: "flex justify-center pt-1 relative items-center",
+                  caption_label: "text-lg font-bold",
+                  day_selected:
+                    "rounded-xl bg-white text-black hover:bg-white focus:bg-white",
+                  day_today:
+                    "before:absolute before:bottom-2 before:left-1/2 before:-translate-x-1/2 before:w-1 before:h-1 before:bg-blue-400 before:rounded-full",
+                }}
+                onDayClick={(date) => {
+                  setSelectedDate(date);
                   const key = date.toDateString();
-                  const todaysEvents = eventsByDate.get(key) ?? [];
-                  const isSelected = selectedDate ? isSameDay(date, selectedDate) : false;
-                  return (
-                    <div className="relative h-full w-full">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="leading-none text-center">{date.getDate()}</span>
-                      </div>
-                      {todaysEvents.length > 0 ? (
-                        <div className="pointer-events-none absolute bottom-1 left-1/2 -translate-x-1/2 flex w-[60px] max-w-[60px] flex-col items-center space-y-0.5">
-                          {todaysEvents.slice(0, 2).map((ev, i) => {
-                            const c = eventColorClasses(ev.name);
-                            const colorCls = isSelected ? `${c.selBg} ${c.selText}` : `${c.bg} ${c.text}`;
-                            return (
-                              <span
-                                key={i}
-                                title={ev.name}
-                                className={`w-full truncate whitespace-nowrap overflow-hidden text-ellipsis rounded px-1 text-[10px] leading-4 ${colorCls}`}
-                              >
-                                {ev.name}
-                              </span>
-                            );
-                          })}
-                          {todaysEvents.length > 2 ? (
-                            <span className={`w-full rounded px-1 text-[10px] leading-4 ${isSelected ? 'bg-black/10 text-black/70' : 'bg-white/10 text-white/80'}`}>
-                              +{todaysEvents.length - 2} more
-                            </span>
-                          ) : null}
+                  const todays = eventsByDate.get(key) ?? [];
+                  if (todays.length > 0) {
+                    const latest = todays.reduce((acc, cur) => {
+                      const at = new Date(
+                        (cur as any).createdAt ?? 0
+                      ).getTime();
+                      const bt = new Date(
+                        (acc as any).createdAt ?? 0
+                      ).getTime();
+                      return at >= bt ? cur : acc;
+                    }, todays[0]);
+                    setActiveEvent(latest);
+                    setDialogOpen(true);
+                  }
+                }}
+                components={{
+                  IconLeft: ({ ...props }) => (
+                    <ChevronLeft className="h-4 w-4" />
+                  ),
+                  IconRight: ({ ...props }) => (
+                    <ChevronRight className="h-4 w-4" />
+                  ),
+                  DayContent: ({ date }) => {
+                    const key = date.toDateString();
+                    const todaysEvents = eventsByDate.get(key) ?? [];
+                    const isSelected = selectedDate
+                      ? isSameDay(date, selectedDate)
+                      : false;
+                    return (
+                      <div className="relative h-full w-full">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="leading-none text-center">
+                            {date.getDate()}
+                          </span>
                         </div>
-                      ) : null}
-                    </div>
-                  );
-                },
-              }}
-            />
+                        {todaysEvents.length > 0 ? (
+                          <div className="pointer-events-none absolute bottom-1 left-1/2 -translate-x-1/2 flex w-[60px] max-w-[60px] flex-col items-center space-y-0.5">
+                            {todaysEvents.slice(0, 2).map((ev, i) => {
+                              const c = eventColorClasses(ev.name);
+                              const colorCls = isSelected
+                                ? `${c.selBg} ${c.selText}`
+                                : `${c.bg} ${c.text}`;
+                              return (
+                                <span
+                                  key={i}
+                                  title={ev.name}
+                                  className={`w-full truncate whitespace-nowrap overflow-hidden text-ellipsis rounded px-1 text-[10px] leading-4 ${colorCls}`}
+                                >
+                                  {ev.name}
+                                </span>
+                              );
+                            })}
+                            {todaysEvents.length > 2 ? (
+                              <span
+                                className={`w-full rounded px-1 text-[10px] leading-4 ${
+                                  isSelected
+                                    ? "bg-black/10 text-black/70"
+                                    : "bg-white/10 text-white/80"
+                                }`}
+                              >
+                                +{todaysEvents.length - 2} more
+                              </span>
+                            ) : null}
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  },
+                }}
+              />
             </div>
           </div>
 
@@ -240,7 +280,10 @@ export default function EventsPage() {
             {isLoading ? (
               <div className="space-y-3">
                 {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="h-14 rounded-2xl bg-gray-800/40 border border-gray-700/60 animate-pulse" />
+                  <div
+                    key={i}
+                    className="h-14 rounded-2xl bg-gray-800/40 border border-gray-700/60 animate-pulse"
+                  />
                 ))}
               </div>
             ) : sortedEvents.length === 0 ? (
@@ -250,8 +293,12 @@ export default function EventsPage() {
                 {sortedEvents.map((ev, idx) => {
                   const d = new Date(ev.date_event as unknown as string);
                   const display = isNaN(d.getTime())
-                    ? 'Invalid date'
-                    : d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+                    ? "Invalid date"
+                    : d.toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      });
                   const color = eventColorClasses(ev.name);
                   return (
                     <button
@@ -261,15 +308,74 @@ export default function EventsPage() {
                     >
                       <div className="flex items-center justify-between gap-4">
                         <div className="font-semibold truncate flex items-center gap-2">
-                          <span className={`truncate max-w-[14rem] rounded px-2 py-0.5 text-xs ${color.bg} ${color.text}`}>{ev.name}</span>
+                          <span
+                            className={`truncate max-w-[14rem] rounded px-2.5 py-1 text-sm font-medium ${color.bg} ${color.text}`}
+                          >
+                            {ev.name}
+                          </span>
                         </div>
-                        <div className="text-sm text-gray-400 whitespace-nowrap">{display}</div>
+                        <div className="text-sm text-gray-400 whitespace-nowrap">
+                          {display}
+                        </div>
                       </div>
                     </button>
                   );
                 })}
               </div>
             )}
+          </div>
+          <div className="col-span-full">
+            <h2 className="text-2xl font-semibold mb-4">
+              Upcoming Events this Month
+            </h2>
+            <div className="sleek-card rounded-3xl p-6">
+              {isLoading ? (
+                <div className="space-y-3">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-14 rounded-2xl bg-gray-800/40 border border-gray-700/60 animate-pulse"
+                    />
+                  ))}
+                </div>
+              ) : currentMonthEvents.length === 0 ? (
+                <p className="text-gray-400">No upcoming events this month.</p>
+              ) : (
+                <div className="space-y-3 max-h-[28rem] overflow-auto pr-1">
+                  {currentMonthEvents.map((ev, idx) => {
+                    const d = new Date(ev.date_event as unknown as string);
+                    const display = isNaN(d.getTime())
+                      ? "Invalid date"
+                      : d.toLocaleDateString("en-US", {
+                          weekday: 'long',
+                          month: "short",
+                          day: "numeric",
+                        });
+                    const color = eventColorClasses(ev.name);
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => handleEventClick(ev)}
+                        className="w-full text-left group rounded-2xl p-4 bg-gray-800/40 border border-gray-700/60 hover:border-blue-500/40 hover:bg-gray-800/60 transition-colors"
+                      >
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="font-semibold truncate flex items-center gap-2">
+                            <span
+                              className={`truncate max-w-[14rem] rounded px-2.5 py-1 text-sm font-medium ${color.bg} ${color.text}`}
+                            >
+                              {ev.name}
+                            </span>
+                          </div>
+                          <div className="text-sm text-gray-400 whitespace-nowrap">
+                            {display}
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -278,17 +384,24 @@ export default function EventsPage() {
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{activeEvent?.name ?? 'Event'}</DialogTitle>
+            <DialogTitle>{activeEvent?.name ?? "Event"}</DialogTitle>
             <DialogDescription>
-              {activeEvent ? (
-                new Date(activeEvent.date_event as unknown as string).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-              ) : (
-                'No event selected'
-              )}
+              {activeEvent
+                ? new Date(
+                    activeEvent.date_event as unknown as string
+                  ).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })
+                : "No event selected"}
             </DialogDescription>
           </DialogHeader>
           {activeEvent ? (
-            <div className="prose prose-invert max-w-none text-gray-200" dangerouslySetInnerHTML={{ __html: activeEvent.description }} />
+            <div
+              className="prose prose-invert max-w-none text-gray-200"
+              dangerouslySetInnerHTML={{ __html: activeEvent.description }}
+            />
           ) : null}
         </DialogContent>
       </Dialog>
