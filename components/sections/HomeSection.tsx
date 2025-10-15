@@ -18,7 +18,7 @@ export default function HomeSection() {
         </div>
 
         <div className="animate-fade-in relative z-10">
-          <div className="mb-8">
+          {/* <div className="mb-8">
             <Image
               style={{
                 filter: "invert(1)",
@@ -28,31 +28,38 @@ export default function HomeSection() {
               src="images/Logo-tr.png"
               alt="Logo"
             />
-          </div>
+          </div> */}
 
-          <h1 className="text-6xl md:text-xl lg:text-5xl font-bold gradient-text tracking-tight leading-none mb-0">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold gradient-text tracking-tight leading-none mb-8">
             Anand Rathi Tinkerers' Lab
           </h1>
 
-          <h2 className="text-2xl md:text-2xl text-gray-300 mb-4 font-light">
-            Innovation Hub
+          <h2 className="text-2xl md:text-4xl text-gray-300 mb-6 font-light">
+            Innovation Hub & Tinkerer Lab
           </h2>
 
           <p className="text-xl text-blue-400 font-medium mb-12">IIT Jodhpur</p>
+
 
           <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              margin:10,
-              padding:10
+              margin: 10,
+              padding: 10,
             }}
           >
-              Sponsored by
-            <Image style={{
-              marginLeft: 10
-            }} width={100} height={200} src="images/maker-logo.png" alt="maker logo"/>
+            Sponsored by
+            <Image
+              style={{
+                marginLeft: 10,
+              }}
+              width={100}
+              height={200}
+              src="images/maker-logo.png"
+              alt="maker logo"
+            />
           </div>
         </div>
       </div>
