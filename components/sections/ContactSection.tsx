@@ -27,7 +27,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-2 text-lg">Email</h4>
-                    <p className="text-gray-300">makerbhawan@iitj.ac.in</p>
+                    <p className="text-gray-300">gensecy_acac@iitj.ac.in</p>
                   </div>
                 </div>
 
@@ -37,8 +37,8 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-2 text-lg">Phone</h4>
-                    <p className="text-gray-300">+91 XXXXXXXXXX</p>
-                    <p className="text-gray-300">+91 XXXXXXXXXX</p>
+                    <p className="text-gray-300">+91 95087 98686</p>
+                    <p className="text-gray-300">+91 93201 03323</p>
                   </div>
                 </div>
 

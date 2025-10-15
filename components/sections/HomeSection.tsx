@@ -45,6 +45,7 @@ export default function HomeSection() {
 
 
           <div
+            className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4"
             style={{
               display: "flex",
               alignItems: "center",
@@ -53,25 +54,21 @@ export default function HomeSection() {
               padding: 10,
             }}
           >
-            Sponsored by
-            <Image
-              style={{
-                marginLeft: 10,
-              }}
-              width={100}
-              height={200}
-              src="images/maker-logo.png"
-              alt="maker logo"
-            />
-            <Image
-              style={{
-                marginLeft: 10,
-              }}
-              width={160}
-              height={200}
-              src="images/anandrathilogo.png"
-              alt="Anand Rathi logo"
-            />
+            <span className="text-base md:text-lg">Sponsored by</span>
+            <div className="flex flex-row items-center justify-center gap-3 md:gap-4 mt-2 md:mt-0 ml-0 md:ml-4">
+              <Image
+                width={100}
+                height={200}
+                src="images/maker-logo.png"
+                alt="maker logo"
+              />
+              <Image
+                width={160}
+                height={200}
+                src="images/anandrathilogo.png"
+                alt="Anand Rathi logo"
+              />
+            </div>
           </div>
         </div>
       </div>

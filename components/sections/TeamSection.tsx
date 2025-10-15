@@ -9,7 +9,7 @@ const teamMembers = [
     role: 'General Secretary ACAC',
     department: 'Student Affairs',
     image: '/images/team/yash.jpeg',
-    bio: 'Serving as General Secretary ACAC',
+    bio: 'General Secretary ACAC',
     social: {
       linkedin: 'https://www.linkedin.com/in/yash-golani-144210106/',
       email: 'gensecy_acac@iitj.ac.in',
@@ -22,7 +22,7 @@ const teamMembers = [
     role: 'General Secretary SS',
     department: 'Student Affairs',
     image: '/images/team/tharak.jpeg',
-    bio: 'Serving as General Secretary SS',
+    bio: 'General Secretary SS',
     social: {
       linkedin: 'https://www.linkedin.com/in/tharakadattahegde/',
       email: 'gensecy_ss@iitj.ac.in',
@@ -31,6 +31,19 @@ const teamMembers = [
   },
   {
     id: 3,
+    name: 'Manas Chechani',
+    role: 'General Secretary SAC',
+    department: 'Student Affairs',
+    image: '/images/team/manas.jpeg',
+    bio: 'General Secretary SAC',
+    social: {
+      linkedin: 'https://www.linkedin.com/in/manas-chechani-1452ab253/',
+      email: 'gensecy_sac@iitj.ac.in',
+      github: '#'
+    }
+  },
+  {
+    id: 4,
     name: 'Sambhav Jha',
     role: 'VP BCCA',
     department: 'Student Affairs',
@@ -43,7 +56,7 @@ const teamMembers = [
     }
   },
   {
-    id: 4,
+    id: 5,
     name: 'Dhruva Kumar Kaushal',
     role: 'Coordinating Team',
     department: 'Student Team',
@@ -56,7 +69,7 @@ const teamMembers = [
     }
   },
   {
-    id: 5,
+    id: 6,
     name: 'Rhythm Baghel',
     role: 'Coordinating Team',
     department: 'Student Team',
@@ -69,7 +82,7 @@ const teamMembers = [
     }
   },
   {
-    id: 6,
+    id: 7,
     name: 'Anuj Patil',
     role: 'Coordinating Team',
     department: 'Student Team',
@@ -82,7 +95,7 @@ const teamMembers = [
     }
   },
   {
-    id: 7,
+    id: 8,
      name: 'Mrudhul Tula',
     role: 'Core Team',
     department: 'Student Team',
@@ -96,7 +109,7 @@ const teamMembers = [
     }
   },
   {
-    id: 8,
+    id: 9,
     name: 'Sohom Sarkar',
     role: 'Core Team',
     department: 'Student Team',
@@ -109,7 +122,7 @@ const teamMembers = [
     }
   },
   {
-    id: 9,
+    id: 10,
     name: 'Agam Harpreet Singh',
     role: 'Core Team',
     department: 'Student Team',
@@ -122,7 +135,7 @@ const teamMembers = [
     }
   },
   {
-    id: 10,
+    id: 11,
     name: 'Goutham A.S',
     role: 'Core Team',
     department: 'Student Team',
@@ -135,7 +148,7 @@ const teamMembers = [
     }
   },
   {
-    id: 11,
+    id: 12,
     name: 'Tashir Ahmed',
     role: 'Core Team',
     department: 'Student Team',
