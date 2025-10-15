@@ -47,4 +47,4 @@ npm start
 ## Credits
 Made by Nafees and Harish, IIT Jodhpur
 
-© 2025 Anand Rathi Tinkerers' Lab. All rights reserved. 
+© 2025 Anand Rathi Tinkerers' Lab. All rights reserved.
