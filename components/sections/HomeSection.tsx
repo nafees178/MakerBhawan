@@ -18,21 +18,24 @@ export default function HomeSection() {
         </div>
 
         <div className="animate-fade-in relative z-10">
-          {/* <div className="mb-8">
+          <div className="mb-8 flex justify-center">
             <Image
-              style={{
-                filter: "invert(1)",
-              }}
-              width={900}
-              height={1000}
-              src="images/Logo-tr.png"
-              alt="Logo"
+              width={180}
+              height={180}
+              src="images/iitjlogo.png"
+              alt="IIT Jodhpur logo"
+              priority
             />
-          </div> */}
+          </div>
 
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold gradient-text tracking-tight leading-none mb-8">
             Anand Rathi Tinkerers' Lab
           </h1>
+
+          <div className="mb-6 text-gray-200">
+            <p className="text-lg md:text-2xl">Inauguration: 15/10/2025</p>
+            <p className="text-lg md:text-2xl">Venue: New ARTL Lab</p>
+          </div>
 
           <h2 className="text-2xl md:text-4xl text-gray-300 mb-6 font-light">
             Innovation Hub & Tinkerer Lab
