@@ -63,6 +63,15 @@ export default function HomeSection() {
               src="images/maker-logo.png"
               alt="maker logo"
             />
+            <Image
+              style={{
+                marginLeft: 10,
+              }}
+              width={160}
+              height={200}
+              src="images/anandrathilogo.png"
+              alt="Anand Rathi logo"
+            />
           </div>
         </div>
       </div>

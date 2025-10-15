@@ -18,9 +18,9 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={inter.className}>
         {children}
-        <footer className="w-full text-center py-4 text-xs text-muted-foreground">
+        {/* <footer className="w-full text-center py-4 text-xs text-muted-foreground">
           © 2025 Anand Rathi Tinkerers' Lab. Made by <a href="http://nafeesansari.vercel.app" target='_blank'>Nafees</a> and <a href="https://linkedin.com/in/harish-babu-balaji-188453269" target="_blank">Harish</a>, IITJ.
-        </footer>
+        </footer> */}
       </body>
     </html>
   );
