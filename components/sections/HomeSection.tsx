@@ -32,10 +32,10 @@ export default function HomeSection() {
             Anand Rathi Tinkerers' Lab
           </h1>
 
-          <div className="mb-6 text-gray-200">
+          /*<div className="mb-6 text-gray-200">
             <p className="text-lg md:text-2xl">Inauguration: 15/10/2025</p>
             <p className="text-lg md:text-2xl">Venue: New ARTL Lab</p>
-          </div>
+          </div>*/
 
           <h2 className="text-2xl md:text-4xl text-gray-300 mb-6 font-light">
             Innovation Hub & Tinkerer Lab
