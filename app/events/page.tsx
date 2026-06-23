@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from 'react';
 import { IEvents } from '@/models/event_model';
+import { sanitizeHtml } from '@/lib/sanitize';
 import DockNavigation from '@/components/DockNavigation';
 import { Calendar } from '@/components/ui/calendar';
 import {
@@ -400,7 +401,7 @@ export default function EventsPage() {
           {activeEvent ? (
             <div
               className="prose prose-invert max-w-none text-gray-200"
-              dangerouslySetInnerHTML={{ __html: activeEvent.description }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(activeEvent.description) }}
             />
           ) : null}
         </DialogContent>

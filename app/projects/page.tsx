@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { IProjects } from '@/models/project_model';
+import { sanitizeHtml } from '@/lib/sanitize';
 import DockNavigation from '@/components/DockNavigation';
 
 export default function ProjectsPage() {
@@ -112,7 +113,7 @@ export default function ProjectsPage() {
                       {/* Project Description */}
                       <div 
                         className="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed mb-4"
-                        dangerouslySetInnerHTML={{ __html: project.description }}
+                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(project.description) }}
                       />
                       
                       {/* Creation Date */}

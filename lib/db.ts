@@ -8,9 +8,12 @@ export async function connectToMongoDB() {
     return cachedConnection;
   }
   try {
-    const mongoUri = "mongodb+srv://b25bb1012_db_user:b25bb1012@maker-bhawan.phougbq.mongodb.net/?retryWrites=true&w=majority&appName=maker-bhawan";
+    const mongoUri = process.env.MONGODB_URI;
     if (!mongoUri) {
-      throw new Error('MONGODB_URI is not set');
+      throw new Error(
+        'MONGODB_URI environment variable is not set. ' +
+        'Add it to .env.local for local development or configure it in your hosting provider.'
+      );
     }
     const cnx = await mongoose.connect(mongoUri);
     cachedConnection = cnx.connection;

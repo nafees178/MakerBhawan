@@ -266,6 +266,8 @@ export default function TeamSection() {
                 <div className="flex justify-center space-x-4">
                   <a
                     href={member.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-lg bg-blue-600/20 text-blue-400 hover:bg-blue-600/30 hover:scale-110 transition-all duration-300"
                   >
                     <Linkedin size={18} />
@@ -278,6 +280,8 @@ export default function TeamSection() {
                   </a>
                   <a
                     href={member.social.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-lg bg-gray-600/20 text-gray-400 hover:bg-gray-600/30 hover:scale-110 transition-all duration-300"
                   >
                     <Github size={18} />
