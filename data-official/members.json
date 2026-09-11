@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Yash Golani",
+    "role": "General Secretary ACAC",
+    "department": "Student Affairs",
+    "photo": "team/yash.jpeg",
+    "linkedin": "https://www.linkedin.com/in/yash-golani-144210106/",
+    "email": "gensecy_acac@iitj.ac.in",
+    "sort_order": 1
+  },
+  {
+    "name": "Tharakadatta G Hegde",
+    "role": "General Secretary SS",
+    "department": "Student Affairs",
+    "photo": "team/tharak.jpeg",
+    "linkedin": "https://www.linkedin.com/in/tharakadattahegde/",
+    "email": "gensecy_ss@iitj.ac.in",
+    "sort_order": 2
+  },
+  {
+    "name": "Manas Chechani",
+    "role": "General Secretary SAC",
+    "department": "Student Affairs",
+    "photo": "team/manas.jpeg",
+    "linkedin": "https://www.linkedin.com/in/manas-chechani-1452ab253/",
+    "email": "gensecy_sac@iitj.ac.in",
+    "sort_order": 3
+  },
+  {
+    "name": "Sambhav Jha",
+    "role": "VP BCCA",
+    "department": "Student Affairs",
+    "photo": "team/sambhav.jpeg",
+    "linkedin": "https://www.linkedin.com/in/sambhav-jha-61412528a/",
+    "email": "b23ee1092@iitj.ac.in",
+    "sort_order": 4
+  },
+  {
+    "name": "Dhruva Kumar Kaushal",
+    "role": "Coordinating Team",
+    "department": "Student Team",
+    "photo": "team/dhruva.jpeg",
+    "linkedin": "https://www.linkedin.com/in/dhruvakkaushal/",
+    "email": "b22ai017@iitj.ac.in",
+    "sort_order": 5
+  },
+  {
+    "name": "Rhythm Baghel",
+    "role": "Coordinating Team",
+    "department": "Student Team",
+    "photo": "team/rhythm.jpeg",
+    "linkedin": "https://www.linkedin.com/in/rhythm-baghel-80675a25a/",
+    "email": "b22cs042@iitj.ac.in",
+    "sort_order": 6
+  },
+  {
+    "name": "Anuj Patil",
+    "role": "Coordinating Team",
+    "department": "Student Team",
+    "photo": "team/anuj.jpeg",
+    "linkedin": "https://www.linkedin.com/in/anuj-vijay-patil/",
+    "email": "b22ee010@iitj.ac.in",
+    "sort_order": 7
+  },
+  {
+    "name": "Mrudhul Tula",
+    "role": "Core Team",
+    "department": "Student Team",
+    "photo": "team/mrudhul.jpeg",
+    "linkedin": "https://www.linkedin.com/in/tula-mrudhul/",
+    "email": "b23ee1076@iitj.ac.in",
+    "sort_order": 8
+  },
+  {
+    "name": "Sohom Sarkar",
+    "role": "Core Team",
+    "department": "Student Team",
+    "photo": "team/sohom.jpeg",
+    "linkedin": "https://www.linkedin.com/in/sohom-sarkar-598b9b2aa/",
+    "email": "b23ee1099@iitj.ac.in",
+    "sort_order": 9
+  },
+  {
+    "name": "Agam Harpreet Singh",
+    "role": "Core Team",
+    "department": "Student Team",
+    "photo": "team/agam.jpeg",
+    "linkedin": "https://www.linkedin.com/in/agam-harpreet-singh/",
+    "email": "b23cm1004@iitj.ac.in",
+    "sort_order": 10
+  },
+  {
+    "name": "Goutham A.S",
+    "role": "Core Team",
+    "department": "Student Team",
+    "photo": "team/goutham.jpeg",
+    "linkedin": "https://www.linkedin.com/in/goutham-a-s-93b30b312/",
+    "email": "b23ee1024@iitj.ac.in",
+    "sort_order": 11
+  },
+  {
+    "name": "Tashir Ahmed",
+    "role": "Core Team",
+    "department": "Student Team",
+    "photo": "team/tashir.jpeg",
+    "linkedin": "https://www.linkedin.com/in/tashir-ahmed-5315b128b/",
+    "email": "b23me1074@iitj.ac.in",
+    "sort_order": 12
+  }
+]

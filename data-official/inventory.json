@@ -1,0 +1,463 @@
+[
+  {
+    "code": "ARTL-MC-001",
+    "name": "Arduino Uno",
+    "variant": "R3",
+    "category": "Microcontroller",
+    "description": "ATmega328P development board. The lab's default starting point for anything with a sensor on it.",
+    "qtyTotal": 12,
+    "qtyAvailable": 12,
+    "specs": [
+      {
+        "label": "MCU",
+        "value": "ATmega328P"
+      },
+      {
+        "label": "Logic",
+        "value": "5 V"
+      },
+      {
+        "label": "Flash",
+        "value": "32 KB"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-MT-014",
+    "name": "DC Motor",
+    "variant": "300 rpm",
+    "category": "Motor",
+    "description": "Geared DC motor. Six of these drive MiniRover-1.",
+    "qtyTotal": 6,
+    "qtyAvailable": 4,
+    "specs": [
+      {
+        "label": "Speed",
+        "value": "300 rpm"
+      },
+      {
+        "label": "Supply",
+        "value": "12 V"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-SN-022",
+    "name": "HC-05",
+    "variant": "Bluetooth",
+    "category": "Module",
+    "description": "Serial Bluetooth module. The rover's wireless migration depends on these.",
+    "qtyTotal": 2,
+    "qtyAvailable": 2,
+    "specs": [
+      {
+        "label": "Profile",
+        "value": "SPP"
+      },
+      {
+        "label": "Baud",
+        "value": "9600 default"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-PW-007",
+    "name": "LiPo",
+    "variant": "11.1 V 2200 mAh",
+    "category": "Power",
+    "description": "3S lithium polymer pack. Charge on the bench, never unattended.",
+    "qtyTotal": 3,
+    "qtyAvailable": 0,
+    "specs": [
+      {
+        "label": "Cells",
+        "value": "3S"
+      },
+      {
+        "label": "Capacity",
+        "value": "2200 mAh"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-SW-003",
+    "name": "DPDT",
+    "variant": "Switch",
+    "category": "Component",
+    "description": "Double pole double throw. Used for the wired rover control.",
+    "qtyTotal": 8,
+    "qtyAvailable": 8
+  },
+  {
+    "code": "ARTL-TL-031",
+    "name": "Oscilloscope",
+    "variant": "100 MHz",
+    "category": "Instrument",
+    "description": "Bench oscilloscope. Lab use only, not for loan off-site.",
+    "qtyTotal": 1,
+    "qtyAvailable": 1,
+    "benchOnly": true,
+    "specs": [
+      {
+        "label": "Bandwidth",
+        "value": "100 MHz"
+      },
+      {
+        "label": "Channels",
+        "value": "2"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-MT-020",
+    "name": "Servo",
+    "variant": "MG996R",
+    "category": "Motor",
+    "description": "High-torque metal gear servo.",
+    "qtyTotal": 6,
+    "qtyAvailable": 6,
+    "specs": [
+      {
+        "label": "Torque",
+        "value": "11 kg·cm"
+      },
+      {
+        "label": "Supply",
+        "value": "6 V"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-MC-009",
+    "name": "Raspberry Pi",
+    "variant": "4B",
+    "category": "Microcontroller",
+    "description": "Single board computer, 4 GB. Runs the vision experiments.",
+    "qtyTotal": 3,
+    "qtyAvailable": 3,
+    "specs": [
+      {
+        "label": "RAM",
+        "value": "4 GB"
+      },
+      {
+        "label": "SoC",
+        "value": "BCM2711"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-SN-005",
+    "name": "Ultrasonic",
+    "variant": "HC-SR04",
+    "category": "Sensor",
+    "description": "Ultrasonic range finder.",
+    "qtyTotal": 11,
+    "qtyAvailable": 11,
+    "specs": [
+      {
+        "label": "Range",
+        "value": "2–400 cm"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-MC-015",
+    "name": "ESP32",
+    "variant": "DevKit v1",
+    "category": "Microcontroller",
+    "description": "Wi-Fi and Bluetooth on one die. Preferred over the Uno when anything needs a network.",
+    "qtyTotal": 8,
+    "qtyAvailable": 5,
+    "specs": [
+      {
+        "label": "Cores",
+        "value": "2 × 240 MHz"
+      },
+      {
+        "label": "Radio",
+        "value": "Wi-Fi + BLE"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-MC-022",
+    "name": "STM32",
+    "variant": "Nucleo F401RE",
+    "category": "Microcontroller",
+    "description": "ARM Cortex-M4 board for work that has outgrown the AVR.",
+    "qtyTotal": 4,
+    "qtyAvailable": 4,
+    "specs": [
+      {
+        "label": "Core",
+        "value": "Cortex-M4"
+      },
+      {
+        "label": "Clock",
+        "value": "84 MHz"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-SN-011",
+    "name": "IMU",
+    "variant": "MPU-6050",
+    "category": "Sensor",
+    "description": "Six-axis accelerometer and gyroscope. Attitude sensing for the rover and the drone rigs.",
+    "qtyTotal": 9,
+    "qtyAvailable": 2,
+    "specs": [
+      {
+        "label": "Axes",
+        "value": "6"
+      },
+      {
+        "label": "Bus",
+        "value": "I²C"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-SN-018",
+    "name": "LiDAR",
+    "variant": "RPLIDAR A1",
+    "category": "Sensor",
+    "description": "360° laser scanner used for the mapping experiments. Booked out most weeks.",
+    "qtyTotal": 1,
+    "qtyAvailable": 0,
+    "specs": [
+      {
+        "label": "Range",
+        "value": "12 m"
+      },
+      {
+        "label": "Rate",
+        "value": "5.5 Hz"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-SN-030",
+    "name": "Depth Camera",
+    "variant": "Intel RealSense D435",
+    "category": "Sensor",
+    "description": "Stereo depth camera. Sign-out requires a coordinator present.",
+    "qtyTotal": 1,
+    "qtyAvailable": 1,
+    "specs": [
+      {
+        "label": "Depth FOV",
+        "value": "87° × 58°"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-MT-027",
+    "name": "Brushless Motor",
+    "variant": "A2212 1000 KV",
+    "category": "Motor",
+    "description": "Outrunner for the fixed-wing and quadrotor airframes.",
+    "qtyTotal": 12,
+    "qtyAvailable": 8,
+    "specs": [
+      {
+        "label": "KV",
+        "value": "1000"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-MT-033",
+    "name": "ESC",
+    "variant": "30 A",
+    "category": "Motor",
+    "description": "Electronic speed controller, matched to the A2212.",
+    "qtyTotal": 12,
+    "qtyAvailable": 9
+  },
+  {
+    "code": "ARTL-MT-041",
+    "name": "Stepper",
+    "variant": "NEMA 17",
+    "category": "Motor",
+    "description": "Bipolar stepper for the plotter and the gantry rig.",
+    "qtyTotal": 10,
+    "qtyAvailable": 10,
+    "specs": [
+      {
+        "label": "Step",
+        "value": "1.8°"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-PW-014",
+    "name": "Bench Supply",
+    "variant": "0–30 V 5 A",
+    "category": "Power",
+    "description": "Variable bench supply. Two channels, current limited.",
+    "qtyTotal": 2,
+    "qtyAvailable": 2,
+    "benchOnly": true
+  },
+  {
+    "code": "ARTL-PW-021",
+    "name": "LiPo Charger",
+    "variant": "iMAX B6",
+    "category": "Power",
+    "description": "Balance charger. Never leave a pack on it unattended.",
+    "qtyTotal": 2,
+    "qtyAvailable": 1
+  },
+  {
+    "code": "ARTL-TL-004",
+    "name": "Soldering Station",
+    "variant": "Hakko FX-888D",
+    "category": "Instrument",
+    "description": "Temperature-controlled iron. Four stations on the main bench.",
+    "qtyTotal": 4,
+    "qtyAvailable": 3,
+    "benchOnly": true
+  },
+  {
+    "code": "ARTL-TL-012",
+    "name": "Multimeter",
+    "variant": "Fluke 117",
+    "category": "Instrument",
+    "description": "True-RMS handheld. Sign out for field testing.",
+    "qtyTotal": 5,
+    "qtyAvailable": 2
+  },
+  {
+    "code": "ARTL-TL-019",
+    "name": "Logic Analyser",
+    "variant": "8-channel",
+    "category": "Instrument",
+    "description": "USB logic analyser for bus debugging.",
+    "qtyTotal": 2,
+    "qtyAvailable": 2,
+    "specs": [
+      {
+        "label": "Channels",
+        "value": "8"
+      },
+      {
+        "label": "Rate",
+        "value": "24 MS/s"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-TL-040",
+    "name": "3D Printer",
+    "variant": "Prusa MK4",
+    "category": "Instrument",
+    "description": "FDM printer. Queue is managed by the lab manager, not by loan.",
+    "qtyTotal": 2,
+    "qtyAvailable": 1,
+    "benchOnly": true,
+    "specs": [
+      {
+        "label": "Volume",
+        "value": "250 × 210 × 220 mm"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-TL-047",
+    "name": "Rotary Tool",
+    "variant": "Dremel 4000",
+    "category": "Instrument",
+    "description": "Cutting and finishing. Eye protection is not optional.",
+    "qtyTotal": 3,
+    "qtyAvailable": 3
+  },
+  {
+    "code": "ARTL-MD-008",
+    "name": "Motor Driver",
+    "variant": "L298N",
+    "category": "Module",
+    "description": "Dual H-bridge. The rover's original drive stage.",
+    "qtyTotal": 14,
+    "qtyAvailable": 11
+  },
+  {
+    "code": "ARTL-MD-016",
+    "name": "GPS Module",
+    "variant": "NEO-6M",
+    "category": "Module",
+    "description": "UART GPS receiver with a patch antenna.",
+    "qtyTotal": 4,
+    "qtyAvailable": 4
+  },
+  {
+    "code": "ARTL-MD-025",
+    "name": "LoRa Module",
+    "variant": "SX1278 433 MHz",
+    "category": "Module",
+    "description": "Long-range telemetry for the field trials.",
+    "qtyTotal": 6,
+    "qtyAvailable": 3,
+    "specs": [
+      {
+        "label": "Band",
+        "value": "433 MHz"
+      }
+    ]
+  },
+  {
+    "code": "ARTL-CM-002",
+    "name": "Breadboard",
+    "variant": "830 point",
+    "category": "Component",
+    "description": "Full-size solderless breadboard.",
+    "qtyTotal": 24,
+    "qtyAvailable": 19
+  },
+  {
+    "code": "ARTL-CM-009",
+    "name": "Jumper Set",
+    "variant": "M-M / M-F / F-F",
+    "category": "Component",
+    "description": "Assorted jumper leads, 120 per set.",
+    "qtyTotal": 20,
+    "qtyAvailable": 20
+  },
+  {
+    "code": "ARTL-CM-017",
+    "name": "Resistor Kit",
+    "variant": "E12, 1/4 W",
+    "category": "Component",
+    "description": "Full E12 decade set, 600 pieces.",
+    "qtyTotal": 6,
+    "qtyAvailable": 6
+  },
+  {
+    "code": "ARTL-AE-001",
+    "name": "Airframe",
+    "variant": "450 mm quad",
+    "category": "Airframe",
+    "description": "Carbon quadrotor frame for the aerial trials.",
+    "qtyTotal": 3,
+    "qtyAvailable": 1
+  },
+  {
+    "code": "ARTL-AE-006",
+    "name": "Flight Controller",
+    "variant": "Pixhawk 4 mini",
+    "category": "Airframe",
+    "description": "Autopilot for the quad and the fixed-wing testbed.",
+    "qtyTotal": 2,
+    "qtyAvailable": 2
+  },
+  {
+    "code": "ARTL-AE-013",
+    "name": "Propeller Set",
+    "variant": "1045",
+    "category": "Airframe",
+    "description": "Balanced 10 × 4.5 props, four per set.",
+    "qtyTotal": 15,
+    "qtyAvailable": 12
+  }
+]

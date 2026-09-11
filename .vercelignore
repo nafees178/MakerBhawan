@@ -1,0 +1,6 @@
+# Environment comes from the Vercel project settings, never from local files:
+# .env.local holds a Vercel OIDC token that must not ship in the source upload.
+.env*
+node_modules
+.next
+*.log

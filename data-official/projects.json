@@ -1,0 +1,53 @@
+[
+  {
+    "slug": "minirover-1",
+    "title": "MiniRover-1",
+    "subtitle": "rocker-bogie",
+    "body": "Six-wheeled rover on a rocker-bogie mechanism. When one rocker arm rises the differential drives the other down, holding the chassis level across ground that would tip a rigid frame. At least four wheels stay in contact at all times. Six 300 RPM motors, DPDT wired control, migrating to HC-05 Bluetooth. The next revision targets gesture control via OpenCV.",
+    "tags": [
+      "Rocker-bogie",
+      "300 RPM ×6",
+      "DPDT control",
+      "HC-05 next"
+    ],
+    "year": 2026,
+    "category": "Robotics"
+  },
+  {
+    "slug": "differential-linkage-rig",
+    "title": "Differential linkage rig",
+    "subtitle": "test bench",
+    "body": "Bench rig built to prove the differential before it ever went on the rover. Balances motion between left and right rockers and keeps the body stable.",
+    "tags": [
+      "Mechanism",
+      "Test rig"
+    ],
+    "year": 2026,
+    "category": "Robotics"
+  },
+  {
+    "slug": "gesture-control",
+    "title": "Gesture control",
+    "subtitle": "computer vision",
+    "body": "A computer-vision layer that reads hand gestures and maps them to drive commands. The next revision targets full autonomy.",
+    "tags": [
+      "OpenCV",
+      "Machine learning",
+      "In progress"
+    ],
+    "year": 2026,
+    "category": "Machine intelligence"
+  },
+  {
+    "slug": "wireless-drive-stack",
+    "title": "Wireless drive stack",
+    "subtitle": "HC-05 migration",
+    "body": "Migration from wired DPDT switching to Bluetooth control over HC-05, keeping the same motor-driver topology.",
+    "tags": [
+      "HC-05",
+      "Embedded C"
+    ],
+    "year": 2026,
+    "category": "Electronics"
+  }
+]

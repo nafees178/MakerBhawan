@@ -3,154 +3,114 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --radius: 0.5rem;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    background: linear-gradient(180deg, #0a0a0a 0%, #111111 50%, #0a0a0a 100%);
-    min-height: 100vh;
-  }
-  
   html {
+    color-scheme: dark;
     scroll-behavior: smooth;
   }
-}
 
-.sleek-card {
-  background: rgba(17, 17, 17, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-}
-
-.dock {
-  background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(25, 25, 25, 0.95) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(30px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-.dock-item {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-}
-
-.dock-item:hover {
-  transform: translateY(-8px) scale(1.05);
-}
-
-.dock-item.active::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  background: #3b82f6;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #3b82f6;
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 50%, #71717a 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.accent-gradient {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.8s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  body {
+    @apply bg-ground font-sans text-ink antialiased;
   }
-  to {
+
+  ::selection {
+    @apply bg-ember text-ground;
+  }
+
+  :focus-visible {
+    @apply rounded-sm outline outline-2 outline-offset-4 outline-ember;
+  }
+
+  button,
+  summary {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .label {
+    @apply font-mono text-[11px] uppercase tracking-[0.14em] text-muted;
+  }
+
+  .input {
+    @apply w-full rounded-md border border-line bg-transparent px-3 py-2 text-sm text-ink placeholder:text-muted/70 focus:border-ink focus:outline-none;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-md bg-ink px-5 text-sm font-medium text-ground transition-colors duration-200 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-ghost {
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-md border border-line px-5 text-sm text-ink transition-colors duration-200 hover:border-ink disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .link {
+    @apply underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-ink;
+  }
+
+  /* Faint engineering grid behind the hero. */
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
+
+/*
+ * Scroll reveal. Content is hidden only once script has marked the document,
+ * so a slow or failed script never leaves a blank page. :where() keeps the
+ * specificity at zero so the reduced-motion rule below always wins.
+ */
+:where(html.js) .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 400ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+:where(html.js) .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Intro paragraphs start dim and brighten as they reach reading height. */
+:where(html.js) .intro-p {
+  opacity: 0.2;
+}
+
+/*
+ * Waypoints on the projects trajectory. Latching is a state change, not a
+ * flourish, so it is a short colour swap rather than a movement.
+ */
+.survey-node {
+  transition:
+    background-color 260ms ease-out,
+    border-color 260ms ease-out;
+}
+
+.survey-node.is-passed {
+  border-color: #f7941d;
+  background-color: #f7941d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  :where(html.js) .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  :where(html.js) .intro-p {
     opacity: 1;
   }
-}
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  .survey-node {
+    transition: none;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.section-padding {
-  padding: 6rem 1rem;
-}
-
-@media (max-width: 768px) {
-  .section-padding {
-    padding: 4rem 1rem;
-  }
-}
-
-.hero-grid {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.team-card:hover {
-  transform: translateY(-4px);
-}
-
-.facility-icon {
-  transition: all 0.3s ease;
-}
-
-.facility-card:hover .facility-icon {
-  transform: scale(1.1);
 }

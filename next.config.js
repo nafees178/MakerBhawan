@@ -51,10 +51,16 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: { unoptimized: true },
+
+  // `next dev` otherwise writes AGENTS.md and CLAUDE.md into the repo.
+  agentRules: false,
+
+  // Member photos are uploaded through a server action; the 1 MB default is
+  // smaller than a phone photo. saveMember enforces its own 4 MB cap.
+  experimental: {
+    serverActions: { bodySizeLimit: '5mb' },
+  },
 
   // Hide the X-Powered-By: Next.js header (information disclosure)
   poweredByHeader: false,
