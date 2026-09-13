@@ -107,15 +107,30 @@ const isState = (v: unknown): v is FormState => typeof v === "object" && v !== n
 // ---- events ----------------------------------------------------------------
 export async function saveEvent(_: FormState, f: FormData): Promise<FormState> {
   await requireCoordinator();
-  const row = validate(() => ({
-    title: required(f, "title", "Title"),
-    starts_at: istInputToIso(required(f, "starts_at", "Start")),
-    ends_at: istInputToIso(text(f, "ends_at")),
-    location: text(f, "location"),
-    description: text(f, "description"),
-    link_url: link(f, "link_url", "Link"),
-    published: checked(f, "published"),
-  }));
+  const row = validate(() => {
+    const title = required(f, "title", "Title");
+    const kind = text(f, "kind") ?? "campus";
+    if (kind !== "campus" && kind !== "outstation") throw new Invalid("Kind must be campus or outstation.");
+    return {
+      title,
+      slug: slugify(text(f, "slug") ?? title),
+      kind,
+      // Optional now: an annual fixture with no announced date is a real state,
+      // and `date_note` is what gets printed when this is empty.
+      starts_at: istInputToIso(text(f, "starts_at")),
+      ends_at: istInputToIso(text(f, "ends_at")),
+      date_note: text(f, "date_note"),
+      location: text(f, "location"),
+      summary: text(f, "summary"),
+      details: text(f, "details"),
+      image_url: text(f, "image_url"),
+      image_alt: text(f, "image_alt"),
+      link_url: link(f, "link_url", "Link"),
+      repo_url: link(f, "repo_url", "Repository"),
+      sort_order: whole(f, "sort_order", "Order"),
+      published: checked(f, "published"),
+    };
+  });
   if (isState(row)) return row;
 
   const error = await write("events", text(f, "id"), row);
@@ -138,10 +153,13 @@ export async function saveProject(_: FormState, f: FormData): Promise<FormState>
       title,
       slug: slugify(text(f, "slug") ?? title),
       subtitle: text(f, "subtitle"),
+      link_url: link(f, "link_url", "Link"),
+      programme: text(f, "programme"),
       body: text(f, "body"),
       tags: (text(f, "tags") ?? "").split(",").map((t) => t.trim()).filter(Boolean),
       mentors: text(f, "mentors"),
       image_url: text(f, "image_url"),
+      image_alt: text(f, "image_alt"),
       year: optionalWhole(f, "year", "Year"),
       sort_order: optionalWhole(f, "sort_order", "Order") ?? 0,
       published: checked(f, "published"),

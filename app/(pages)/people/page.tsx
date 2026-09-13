@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import { Empty, PageHeader, SectionTitle } from "@/components/PageHeader";
+import { pageMeta } from "@/lib/site";
 import { getMembers } from "@/lib/data";
 import type { Member } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = { title: "People" };
+export const metadata: Metadata = pageMeta({
+  title: "People",
+  description:
+    "The faculty advisors, managers and coordinators who run the Anand Rathi Tinkerers' Lab at IIT Jodhpur.",
+  path: "/people",
+});
 
 // Seniority reads through size: faculty advisors largest, managers a step down,
 // everyone else at the base size. Keyed on the section name set in the admin.
@@ -104,7 +110,7 @@ export default async function PeoplePage() {
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={m.photo_url}
-                        alt=""
+                        alt={`${m.full_name}, ${m.role_label}.`}
                         width={tier.px}
                         height={tier.px}
                         className={cn(

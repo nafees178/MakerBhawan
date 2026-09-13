@@ -11,12 +11,12 @@ const CONTACT_EMAIL = "gensecy_acac@iitj.ac.in";
 
 // Photographs from the lab itself. Captions describe only what is in frame.
 const SLIDES: Slide[] = [
-  { tab: "Laser cutting", src: "/images/lab/lab-01.jpg", alt: "The laser cutter in the lab.", caption: "The laser cutter on the lab floor." },
-  { tab: "Machining", src: "/images/lab/lab-04.jpg", alt: "A Roland SRM-20 desktop milling machine.", caption: "A desktop CNC mill, the Roland SRM-20." },
-  { tab: "Aircraft", src: "/images/lab/lab-06.jpg", alt: "A radio-controlled warbird model on the lab floor.", caption: "An RC aircraft model in the lab." },
-  { tab: "Drones", src: "/images/lab/lab-07.jpg", alt: "Quadcopter frame, controller and parts laid out on a table.", caption: "Quadcopter parts laid out for a build." },
-  { tab: "Sessions", src: "/images/lab/lab-10.jpg", alt: "Students gathered around laptops during a session.", caption: "Students working through a session together." },
-  { tab: "Demos", src: "/images/lab/lab-03.jpg", alt: "Students watching a machine demonstration.", caption: "A machine demonstration for students." },
+  { tab: "Laser cutting", src: "/images/lab/lab-01.webp", alt: "The laser cutter in the lab.", caption: "The laser cutter on the lab floor." },
+  { tab: "Machining", src: "/images/lab/lab-04.webp", alt: "A Roland SRM-20 desktop milling machine.", caption: "A desktop CNC mill, the Roland SRM-20." },
+  { tab: "Aircraft", src: "/images/lab/lab-06.webp", alt: "A radio-controlled warbird model on the lab floor.", caption: "An RC aircraft model in the lab." },
+  { tab: "Drones", src: "/images/lab/lab-07.webp", alt: "Quadcopter frame, controller and parts laid out on a table.", caption: "Quadcopter parts laid out for a build." },
+  { tab: "Sessions", src: "/images/lab/lab-10.webp", alt: "Students gathered around laptops during a session.", caption: "Students working through a session together." },
+  { tab: "Demos", src: "/images/lab/lab-03.webp", alt: "Students watching a machine demonstration.", caption: "A machine demonstration for students." },
 ];
 
 const FAQ: FaqGroup[] = [
@@ -71,6 +71,7 @@ export default async function Home() {
   const { upcoming, past } = splitEvents(events);
   const featuredEvents = (upcoming.length > 0 ? upcoming : past).slice(0, 3);
   const mockItems = [...available.slice(0, 5), ...items.filter((i) => !i.available).slice(0, 1)];
+  const sparkCount = projects.filter((p) => p.programme === "spark-26").length;
 
   return (
     <>
@@ -79,15 +80,14 @@ export default async function Home() {
         <Parallax rate={0.22} className="absolute inset-0 -z-30">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/lab/lab-11.jpg"
+            src="/images/lab/lab-11.webp"
             alt=""
             fetchPriority="high"
-            className="h-[120%] w-full object-cover object-[center_30%] opacity-45"
+            className="h-[120%] w-full object-cover object-[center_26%] opacity-[0.62] sm:opacity-55 lg:opacity-45"
           />
         </Parallax>
-        <div aria-hidden className="absolute inset-0 -z-20 bg-gradient-to-b from-ground/80 via-ground/70 to-ground" />
-        {/* Extra shade behind the headline so it never competes with faces in the photo. */}
-        <div aria-hidden className="absolute inset-0 -z-20 bg-gradient-to-r from-ground via-ground/60 to-transparent" />
+        {/* See .hero-veil: horizontal on a wide screen, vertical on a narrow one. */}
+        <div aria-hidden className="hero-veil absolute inset-0 -z-20" />
         <div aria-hidden className="grid-bg absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" />
         <div
           aria-hidden
@@ -97,30 +97,44 @@ export default async function Home() {
         <div className={cn(container, "grid min-h-[88svh] items-center gap-14 py-20 lg:grid-cols-[1.1fr_1fr]")}>
           <div>
             <Reveal>
-              <Chip>IIT Jodhpur · Maker space</Chip>
+              <Chip>IIT Jodhpur</Chip>
             </Reveal>
             <Reveal delay={80}>
-              <h1 className="mt-6 text-[2.7rem] font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-                Where ideas
+              {/*
+                The headline says what the place is and who may use it. A maker
+                space does not need a slogan: the specific claim, that the
+                machines are here and that any student at this institute can
+                come and use them, is the interesting part.
+              */}
+              <h1 className="mt-6 text-[2.6rem] font-semibold leading-[1.03] tracking-tight sm:text-6xl lg:text-[4.1rem]">
+                The maker space
                 <br />
-                <span className="text-muted">become hardware.</span>
+                at IIT Jodhpur.
+                <br />
+                <span className="text-muted">Open to every student here.</span>
               </h1>
             </Reveal>
             <Reveal delay={180}>
-              <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
-                The Anand Rathi Tinkerers&apos; Lab at IIT Jodhpur: machines, equipment and the students who build with
-                them.
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+                A laser cutter, a desktop CNC mill, and {items.length} items of microcontrollers,
+                sensors, motors, power and instruments on the shelves.{" "}
+                <span className="text-ink">{available.length} of them are available right now.</span>{" "}
+                Drone builds, aircraft builds and {projects.length} mentor-led projects run out of
+                this room.
               </p>
             </Reveal>
             <Reveal delay={260}>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link href="#inside" className="btn rounded-full">
-                  Explore the lab
+                <Link href="/login" className="btn">
+                  Join with your IITJ email
                 </Link>
-                <Link href="/inventory" className="btn-ghost rounded-full">
-                  Browse equipment
+                <Link href="/inventory" className="btn-ghost">
+                  See what is on the shelves
                 </Link>
               </div>
+              <p className="mt-4 text-sm text-muted">
+                One code to your institute address. No password to remember.
+              </p>
             </Reveal>
           </div>
           <Reveal delay={380}>
@@ -181,7 +195,7 @@ export default async function Home() {
                   {available.length} of {items.length} items available today
                 </Link>
               }
-              image="/images/lab/lab-02.jpg"
+              image="/images/lab/lab-02.webp"
               alt="Inside the laser cutter, with a student pointing at the laser tube."
             />
           </Reveal>
@@ -189,14 +203,18 @@ export default async function Home() {
             <DeckPanel
               flip
               label="Events"
-              title="Competitions, workshops and sessions."
-              body={`${events.length} events so far${featuredEvents.length ? `, including ${featuredEvents.map((e) => e.title).join(", ")}` : ""}.`}
+              title="Two on campus, one worth travelling for."
+              body={
+                featuredEvents.length
+                  ? `${featuredEvents.map((e) => e.title).join(", ")}. Each has a page with the detail on what it is and how to take part.`
+                  : "Events appear here as they are published."
+              }
               foot={
                 <Link href="/events" className="link">
-                  See the calendar
+                  Read about all {events.length} of them
                 </Link>
               }
-              image="/images/lab/lab-14.jpg"
+              image="/images/lab/lab-14.webp"
               alt="The title slide of the Prometeo '26 introductory session."
             />
           </Reveal>
@@ -205,11 +223,8 @@ export default async function Home() {
               label="Projects"
               title="Built here, start to finish."
               body={
-                projects.length
-                  ? `Recent builds include ${projects
-                      .slice(0, 3)
-                      .map((p) => p.title)
-                      .join(", ")}.`
+                sparkCount
+                  ? `SPARK 26, the Robotics Society's summer programme, released ${sparkCount} briefs. Each one is written by a student mentor and built here across a full term.`
                   : "Projects from lab members appear here as they are published."
               }
               foot={
@@ -217,7 +232,7 @@ export default async function Home() {
                   {projects.length} projects published
                 </Link>
               }
-              image="/images/lab/lab-05.jpg"
+              image="/images/lab/lab-05.webp"
               alt="A foam-board aircraft being assembled on the floor."
             />
           </Reveal>
@@ -248,7 +263,7 @@ export default async function Home() {
                   <span className="link">{team.length} people on the team</span>
                 </Link>
               }
-              image="/images/lab/lab-09.jpg"
+              image="/images/lab/lab-09.webp"
               imagePosition="object-bottom"
               alt="Students seated with laptops during a session in the lab."
             />
@@ -275,12 +290,12 @@ export default async function Home() {
       <section className="relative isolate mt-12 overflow-hidden border-t border-line">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/lab/lab-08.jpg"
+          src="/images/lab/lab-08.webp"
           alt=""
           loading="lazy"
-          className="absolute inset-0 -z-20 h-full w-full object-cover opacity-40"
+          className="absolute inset-0 -z-20 h-full w-full object-cover opacity-[0.55] lg:opacity-40"
         />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-ground via-ground/85 to-ground/30" />
+        <div aria-hidden className="cta-veil absolute inset-0 -z-10" />
         <div className={cn(container, "py-28 sm:py-36")}>
           <Reveal>
             <h2 className="max-w-2xl text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
@@ -292,10 +307,10 @@ export default async function Home() {
               Sign in with your IIT Jodhpur email to get started. It takes a one-time code, nothing else.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/login" className="btn rounded-full">
+              <Link href="/login" className="btn">
                 Join with your IITJ email
               </Link>
-              <Link href="/events" className="btn-ghost rounded-full">
+              <Link href="/events" className="btn-ghost">
                 What&apos;s on
               </Link>
             </div>

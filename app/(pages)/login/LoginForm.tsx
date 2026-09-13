@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { cn } from "@/lib/utils";
 import { signIn, type LoginState } from "./actions";
 
 export function LoginForm({ next }: { next: string }) {
@@ -26,13 +27,26 @@ export function LoginForm({ next }: { next: string }) {
             required
             autoFocus
             placeholder="123456"
-            className="input mt-2 max-w-[12rem] font-mono text-lg tracking-[0.3em]"
+            aria-invalid={Boolean(state.error)}
+            aria-describedby={state.error ? "code-error" : undefined}
+            className={cn(
+              "input mt-2 max-w-[12rem] font-mono text-lg tracking-[0.3em]",
+              state.error && "border-ember focus:border-ember",
+            )}
           />
         </label>
-        {state.error && <p className="text-sm text-ember">{state.error}</p>}
-        {state.notice && !state.error && <p className="text-sm text-muted">{state.notice}</p>}
+        {/* role="alert" so a screen reader hears the refusal without having to
+            go looking for it after the form re-renders. */}
+        <p id="code-error" role="alert" className="text-sm text-ember">
+          {state.error}
+        </p>
+        {state.notice && !state.error && (
+          <p role="status" className="text-sm text-muted">
+            {state.notice}
+          </p>
+        )}
         <div className="flex flex-wrap items-center gap-4">
-          <button name="intent" value="verify" className="btn" disabled={pending}>
+          <button name="intent" value="verify" className="btn" disabled={pending} aria-busy={pending}>
             {pending ? "Checking…" : "Sign in"}
           </button>
           <button name="intent" value="resend" formNoValidate className="link text-sm text-muted" disabled={pending}>
@@ -58,11 +72,20 @@ export function LoginForm({ next }: { next: string }) {
           autoComplete="email"
           defaultValue={state.email}
           placeholder="b23xx0000@iitj.ac.in"
-          className="input mt-2"
+          aria-invalid={Boolean(state.error)}
+          aria-describedby={state.error ? "email-error" : "email-hint"}
+          className={cn("input mt-2", state.error && "border-ember focus:border-ember")}
         />
       </label>
-      {state.error && <p className="text-sm text-ember">{state.error}</p>}
-      <button name="intent" value="send" className="btn" disabled={pending}>
+      <p id="email-error" role="alert" className="text-sm text-ember">
+        {state.error}
+      </p>
+      {!state.error && (
+        <p id="email-hint" className="text-sm text-muted">
+          The code arrives in a minute or two. Check the spam folder if it does not.
+        </p>
+      )}
+      <button name="intent" value="send" className="btn" disabled={pending} aria-busy={pending}>
         {pending ? "Sending…" : "Send code"}
       </button>
     </form>

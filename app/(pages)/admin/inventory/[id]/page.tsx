@@ -51,7 +51,7 @@ export default async function EditItemPage({ params }: { params: Promise<{ id: s
         />
 
         <fieldset className="space-y-4 border-l border-ember pl-4">
-          <legend className="label mb-2">Stock — admin only, never shown publicly</legend>
+          <legend className="label mb-2">Stock, admin only and never shown publicly</legend>
           <div className="grid gap-5 sm:grid-cols-2">
             <Field label="Total held" name="qty_total" type="number" required defaultValue={item?.qty_total ?? 0} />
             <Field
@@ -65,7 +65,7 @@ export default async function EditItemPage({ params }: { params: Promise<{ id: s
           </div>
         </fieldset>
 
-        <Checkbox label="Lab use only — cannot leave the lab" name="bench_only" defaultChecked={item?.bench_only} />
+        <Checkbox label="Lab use only, cannot leave the lab" name="bench_only" defaultChecked={item?.bench_only} />
       </AdminForm>
       {item && <DeleteForm action={deleteItem.bind(null, item.id)} label="Delete this item" />}
     </>

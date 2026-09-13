@@ -26,7 +26,7 @@ update members set role_label = 'Manager', department = 'Managers', sort_order =
 -- sort_order also orders the sections on the People page: advisors first.
 insert into members (full_name, role_label, department, photo_url, profile_url, email, sort_order, is_placeholder) values
   ('Dr. Rajit Ranjan', 'Faculty Advisor', 'Faculty Advisors',
-   '/images/team/rajit-ranjan.jpg',
+   '/images/team/rajit-ranjan.webp',
    'https://www.iitj.ac.in/People/Profile/09759489-697b-41f4-866d-c6fa9429e6d6',
    'rajitranjan@iitj.ac.in', 1, false),
   ('Dr. Bhivraj Suthar', 'Faculty Advisor', 'Faculty Advisors',

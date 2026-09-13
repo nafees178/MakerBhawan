@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { deleteProject, saveProject } from "@/app/(pages)/admin/actions";
 import { AdminForm } from "@/components/admin/AdminForm";
-import { Checkbox, DeleteForm, EditorHeader, Field, TextArea } from "@/components/admin/fields";
+import { Checkbox, DeleteForm, EditorHeader, Field, Select, TextArea } from "@/components/admin/fields";
 import { createClient } from "@/lib/supabase/server";
 import type { Project } from "@/lib/types";
 
@@ -42,6 +42,24 @@ export default async function EditProjectPage({ params }: { params: Promise<{ id
           defaultValue={project?.image_url}
           hint="Path such as /images/projects/drone-swarm.webp, or a full URL."
         />
+        <Select
+          label="Programme"
+          name="programme"
+          defaultValue={project?.programme ?? ""}
+          options={[
+            { value: "", label: "None" },
+            { value: "spark-26", label: "SPARK 26" },
+          ]}
+          hint="SPARK entries are listed together under the programme note on /projects."
+        />
+        <Field
+          label="Link"
+          name="link_url"
+          type="url"
+          defaultValue={project?.link_url}
+          placeholder="https://github.com/…"
+          hint="A repository or external brief, if there is one."
+        />
         <Field
           label="Tags"
           name="tags"
@@ -59,7 +77,7 @@ export default async function EditProjectPage({ params }: { params: Promise<{ id
           />
         </div>
         <Checkbox
-          label="Published — show on the public site"
+          label="Published, show on the public site"
           name="published"
           defaultChecked={project?.published ?? true}
         />

@@ -6,8 +6,9 @@ export default async function AdminEventsPage() {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("events")
-    .select("id, title, starts_at, location, published")
-    .order("starts_at", { ascending: false });
+    .select("id, title, starts_at, date_note, location, sort_order, published")
+    .order("sort_order")
+    .order("starts_at", { ascending: false, nullsFirst: false });
   if (error) throw new Error(error.message);
 
   return (
@@ -21,7 +22,7 @@ export default async function AdminEventsPage() {
         href: `/admin/events/${e.id}`,
         primary: e.title,
         secondary: e.location,
-        meta: formatDate(e.starts_at),
+        meta: e.date_note ?? (e.starts_at ? formatDate(e.starts_at) : "No date"),
         flag: e.published ? null : "Draft",
       }))}
     />

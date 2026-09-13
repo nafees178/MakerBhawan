@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { onScrollFrame, reducedMotion } from "@/components/home/motion";
 import type { Project } from "@/lib/types";
@@ -79,26 +80,33 @@ export function Survey({ projects }: { projects: Project[] }) {
           />
 
           {p.image_url && (
-            <figure data-plate className="relative mb-10 overflow-hidden bg-ground">
+            <Link href={`/projects/${p.slug}`} tabIndex={-1} className="block">
+              <figure data-plate className="relative mb-10 overflow-hidden bg-ground">
               <div className="aspect-[16/9] lg:aspect-[21/9]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   data-shot
                   src={p.image_url}
-                  alt=""
+                  alt={`${p.title}${p.subtitle ? `: ${p.subtitle}` : ""}.`}
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover will-change-transform"
                 />
               </div>
-              <div data-veil aria-hidden className="absolute inset-0 bg-ground" />
-            </figure>
+                <div data-veil aria-hidden className="absolute inset-0 bg-ground" />
+              </figure>
+            </Link>
           )}
 
           <div className="grid gap-x-16 gap-y-6 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)]">
             <div>
               <h2 className="text-2xl font-semibold leading-tight tracking-tight sm:text-3xl">
-                {p.title}
+                <Link
+                  href={`/projects/${p.slug}`}
+                  className="underline decoration-line decoration-1 underline-offset-[6px] transition-colors hover:decoration-ember"
+                >
+                  {p.title}
+                </Link>
               </h2>
               {p.subtitle && <p className="mt-2 text-muted">{p.subtitle}</p>}
               {p.mentors && <p className="mt-5 text-sm text-ink/70">Mentored by {p.mentors}</p>}
@@ -114,6 +122,17 @@ export function Survey({ projects }: { projects: Project[] }) {
                   ))}
                 </ul>
               )}
+              <p className="mt-7">
+                <Link
+                  href={`/projects/${p.slug}`}
+                  className="inline-flex items-center gap-2 border-b border-line pb-0.5 text-sm transition-colors hover:border-ember"
+                >
+                  Read the brief
+                  <span aria-hidden className="text-ember">
+                    &rarr;
+                  </span>
+                </Link>
+              </p>
             </div>
           </div>
         </li>

@@ -1,67 +1,69 @@
 import type { Metadata } from "next";
-import { Empty, PageHeader, SectionTitle } from "@/components/PageHeader";
+import { EventCard } from "@/components/events/EventCard";
+import { Empty, PageHeader } from "@/components/PageHeader";
 import { getEvents, splitEvents } from "@/lib/data";
-import type { LabEvent } from "@/lib/types";
-import { formatDate } from "@/lib/utils";
+import { pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Events" };
-
-function EventRow({ event }: { event: LabEvent }) {
-  return (
-    <li className="grid gap-1 py-4 sm:grid-cols-[8rem_1fr_auto] sm:items-baseline sm:gap-6">
-      <span className="font-mono text-sm tabular-nums text-muted">{formatDate(event.starts_at)}</span>
-      <div>
-        <p className="font-medium">{event.title}</p>
-        {event.description && <p className="mt-1 text-sm text-muted">{event.description}</p>}
-        {event.location && <p className="label mt-1">{event.location}</p>}
-      </div>
-      {event.link_url ? (
-        <a className="link text-sm text-muted" href={event.link_url} target="_blank" rel="noopener noreferrer">
-          Details ↗
-        </a>
-      ) : (
-        <span />
-      )}
-    </li>
-  );
-}
+export const metadata: Metadata = pageMeta({
+  title: "Events",
+  description:
+    "National Science Day, the Sandstone Summit and Robocon: what the Anand Rathi Tinkerers' Lab at IIT Jodhpur runs, and what it travels for.",
+  path: "/events",
+});
 
 export default async function EventsPage() {
   const { upcoming, past } = splitEvents(await getEvents());
+  const [lead, ...rest] = upcoming;
 
   return (
     <>
-      <PageHeader label="Events" title="Calendar">
-        Competitions, workshops and sessions run by the lab.
-      </PageHeader>
-
-      <div className="space-y-14">
-        <section>
-          <SectionTitle count={upcoming.length}>Upcoming</SectionTitle>
-          {upcoming.length === 0 ? (
-            <Empty>Nothing scheduled right now. Check back soon.</Empty>
-          ) : (
-            <ul className="divide-y divide-line">
-              {upcoming.map((e) => (
-                <EventRow key={e.id} event={e} />
-              ))}
-            </ul>
-          )}
-        </section>
-
-        <section>
-          <SectionTitle count={past.length}>Past</SectionTitle>
-          {past.length === 0 ? (
-            <Empty>No past events yet.</Empty>
-          ) : (
-            <ul className="divide-y divide-line">
-              {past.map((e) => (
-                <EventRow key={e.id} event={e} />
-              ))}
-            </ul>
-          )}
-        </section>
+      {/* A warm bloom behind the masthead. The page is otherwise near-black from
+          edge to edge, and three dark cards on a dark ground read as a list of
+          boxes rather than as a page. */}
+      <div className="relative">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-28 left-1/2 -z-10 h-[24rem] w-[44rem] max-w-full -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgb(247_148_29/0.11),transparent_66%)]"
+        />
+        <PageHeader label="Events" title="Three fixtures worth planning around">
+          Two run on this campus and one takes the team off it. Each has a page of its own with the
+          detail: what it is, what the lab does there, and how to take part.
+        </PageHeader>
       </div>
+
+      {upcoming.length === 0 ? (
+        <Empty>Nothing published yet. Check back soon.</Empty>
+      ) : (
+        <div className="grid items-stretch gap-6 lg:grid-cols-2">
+          {lead && <EventCard event={lead} lead />}
+          {rest.map((e) => (
+            <EventCard key={e.id} event={e} />
+          ))}
+        </div>
+      )}
+
+      {past.length > 0 && (
+        <section className="mt-20">
+          <h2 className="mb-6 border-b border-line pb-3 text-sm text-muted">
+            Previously ({past.length})
+          </h2>
+          <ul className="divide-y divide-line">
+            {past.map((e) => (
+              <li key={e.id} className="grid gap-1 py-4 sm:grid-cols-[9rem_1fr] sm:gap-6">
+                <span className="font-mono text-sm tabular-nums text-muted">
+                  {e.starts_at ? new Date(e.starts_at).getFullYear() : ""}
+                </span>
+                <div>
+                  <p className="font-medium">{e.title}</p>
+                  {e.summary ?? e.description ? (
+                    <p className="mt-1 text-sm text-muted">{e.summary ?? e.description}</p>
+                  ) : null}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   );
 }

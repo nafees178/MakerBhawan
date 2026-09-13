@@ -5,7 +5,13 @@ import { getViewer } from "@/lib/auth";
 import { safeNext } from "@/lib/utils";
 import { LoginForm } from "./LoginForm";
 
-export const metadata: Metadata = { title: "Sign in" };
+export const metadata: Metadata = {
+  title: "Sign in",
+  description: "Sign in to the Anand Rathi Tinkerers' Lab with your IIT Jodhpur email and a one-time code.",
+  // Nothing here is useful in a search result, and the page bounces anyone
+  // already signed in.
+  robots: { index: false, follow: true },
+};
 
 export default async function LoginPage({
   searchParams,

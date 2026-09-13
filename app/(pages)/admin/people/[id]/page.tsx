@@ -31,7 +31,11 @@ export default async function EditMemberPage({ params }: { params: Promise<{ id:
         <div className="flex items-center gap-5">
           {member?.photo_url ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={member.photo_url} alt="" className="h-20 w-20 rounded-full object-cover" />
+            <img
+              src={member.photo_url}
+              alt={`Current photo of ${member.full_name}.`}
+              className="h-20 w-20 rounded-full object-cover"
+            />
           ) : (
             <span className="h-20 w-20 rounded-full bg-line" />
           )}
@@ -80,11 +84,11 @@ export default async function EditMemberPage({ params }: { params: Promise<{ id:
           <Field label="Email" name="email" type="email" defaultValue={member?.email} />
         </div>
         <Checkbox
-          label="Details pending — show empty photo, LinkedIn and GitHub slots"
+          label="Details pending, show empty photo, LinkedIn and GitHub slots"
           name="is_placeholder"
           defaultChecked={member?.is_placeholder}
         />
-        <Checkbox label="Alumni — hide from the current team" name="is_alumni" defaultChecked={member?.is_alumni} />
+        <Checkbox label="Alumni, hide from the current team" name="is_alumni" defaultChecked={member?.is_alumni} />
       </AdminForm>
       {member && <DeleteForm action={deleteMember.bind(null, member.id)} label="Remove this person" />}
     </>

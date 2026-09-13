@@ -69,5 +69,9 @@ export async function signIn(prev: LoginState, formData: FormData): Promise<Logi
     return { step: "code", email, error: "That code is wrong or has expired. Request a new one." };
   }
 
-  redirect(safeNext(formData.get("next")));
+  // Somebody who clicked "Join" from the home page has no destination in mind,
+  // so they get the welcome page. Somebody who was sent here from /admin does,
+  // and gets bounced straight back to it.
+  const destination = safeNext(formData.get("next"));
+  redirect(destination === "/" ? "/thank-you" : destination);
 }

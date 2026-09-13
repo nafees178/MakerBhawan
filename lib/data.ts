@@ -4,22 +4,29 @@ import type { LabEvent, Member, Project, PublicItem } from "@/lib/types";
 // Public reads, made as an anonymous visitor (see lib/supabase/public.ts).
 // RLS hides unpublished rows from anon, and the queries filter on published too.
 
+const EVENT_COLUMNS =
+  "id, slug, title, kind, starts_at, ends_at, date_note, summary, details, description, location, image_url, image_alt, link_url, repo_url, sort_order, published";
+
 export async function getEvents(): Promise<LabEvent[]> {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("events")
-    .select("id, title, starts_at, ends_at, description, location, link_url, published")
+    .select(EVENT_COLUMNS)
     .eq("published", true)
-    .order("starts_at", { ascending: false });
+    .order("sort_order")
+    .order("starts_at", { ascending: false, nullsFirst: false });
   if (error) throw new Error(`events: ${error.message}`);
   return data;
 }
+
+const PROJECT_COLUMNS =
+  "id, slug, title, subtitle, body, tags, year, mentors, image_url, link_url, programme, sort_order, published";
 
 export async function getProjects(): Promise<Project[]> {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("projects")
-    .select("id, slug, title, subtitle, body, tags, year, mentors, image_url, sort_order, published")
+    .select(PROJECT_COLUMNS)
     .eq("published", true)
     .order("sort_order")
     .order("created_at", { ascending: false });
@@ -50,12 +57,42 @@ export async function getMembers(): Promise<Member[]> {
   return data;
 }
 
+/** One published event by slug, for /events/[slug]. */
+export async function getEvent(slug: string): Promise<LabEvent | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("events")
+    .select(EVENT_COLUMNS)
+    .eq("slug", slug)
+    .eq("published", true)
+    .maybeSingle();
+  if (error) throw new Error(`event ${slug}: ${error.message}`);
+  return data;
+}
+
+/** One published project by slug, for /projects/[slug]. */
+export async function getProject(slug: string): Promise<Project | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("projects")
+    .select(PROJECT_COLUMNS)
+    .eq("slug", slug)
+    .eq("published", true)
+    .maybeSingle();
+  if (error) throw new Error(`project ${slug}: ${error.message}`);
+  return data;
+}
+
+/**
+ * Splits on date where there is one. An event with no announced date is not
+ * past, so it sits with the upcoming set rather than falling off the page.
+ */
 export function splitEvents(events: LabEvent[], now = new Date()) {
   const startOfToday = new Date(now);
   startOfToday.setHours(0, 0, 0, 0);
-  const upcoming = events
-    .filter((e) => new Date(e.ends_at ?? e.starts_at) >= startOfToday)
-    .sort((a, b) => a.starts_at.localeCompare(b.starts_at));
-  const past = events.filter((e) => new Date(e.ends_at ?? e.starts_at) < startOfToday);
-  return { upcoming, past };
+  const ended = (e: LabEvent) => {
+    const at = e.ends_at ?? e.starts_at;
+    return at !== null && new Date(at) < startOfToday;
+  };
+  return { upcoming: events.filter((e) => !ended(e)), past: events.filter(ended) };
 }
