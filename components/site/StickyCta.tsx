@@ -14,7 +14,7 @@ import { readConsent, CONSENT_EVENT } from "@/components/site/consent";
  * be answered: two bars stacked at the bottom of a phone is most of the
  * viewport.
  *
- * Hidden entirely for signed-in visitors and inside /admin, where "Join" is
+ * Hidden entirely for signed-in visitors and inside /admin, where "Sign up" is
  * the wrong thing to offer.
  */
 export function StickyCta({ signedIn }: { signedIn: boolean }) {
@@ -43,10 +43,10 @@ export function StickyCta({ signedIn }: { signedIn: boolean }) {
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ground/95 px-5 py-3 backdrop-blur-xl md:hidden">
       <div className="flex items-center gap-3">
         <p className="min-w-0 flex-1 text-sm leading-snug text-muted">
-          IITJ email, one code, no password.
+          IITJ email and a password.
         </p>
-        <Link href="/login" className="btn shrink-0 px-5">
-          Join the lab
+        <Link href="/signup" className="btn shrink-0 px-5">
+          Sign up
         </Link>
       </div>
     </div>

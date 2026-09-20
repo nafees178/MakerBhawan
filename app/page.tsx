@@ -38,7 +38,7 @@ const FAQ: FaqGroup[] = [
     items: [
       {
         q: "Who can sign in?",
-        a: "Anyone with an IIT Jodhpur email address (ending in @iitj.ac.in). There is no password: enter your email and use the one-time code we send.",
+        a: "Anyone with an IIT Jodhpur email address (ending in @iitj.ac.in). Sign up with your institute email and a password of your choice.",
       },
       { q: "Do I need an account to look around?", a: "No. Events, projects, equipment and the team are all public." },
       {
@@ -125,15 +125,15 @@ export default async function Home() {
             </Reveal>
             <Reveal delay={260}>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link href="/login" className="btn">
-                  Join with your IITJ email
+                <Link href="/signup" className="btn">
+                  Sign up with your IITJ email
                 </Link>
                 <Link href="/inventory" className="btn-ghost">
                   See what is on the shelves
                 </Link>
               </div>
               <p className="mt-4 text-sm text-muted">
-                One code to your institute address. No password to remember.
+                Your institute email and a password. That is all it takes.
               </p>
             </Reveal>
           </div>
@@ -304,11 +304,11 @@ export default async function Home() {
               <span className="text-muted">at ARTL.</span>
             </h2>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
-              Sign in with your IIT Jodhpur email to get started. It takes a one-time code, nothing else.
+              Sign up with your IIT Jodhpur email to get started. It takes an email and a password, nothing else.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/login" className="btn">
-                Join with your IITJ email
+              <Link href="/signup" className="btn">
+                Sign up with your IITJ email
               </Link>
               <Link href="/events" className="btn-ghost">
                 What&apos;s on

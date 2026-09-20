@@ -121,8 +121,8 @@ export default async function ProjectPage({ params }: Params) {
 
           <p className="mt-8 text-sm leading-relaxed text-muted">
             Want in on a build like this?{" "}
-            <Link href="/login" className="link text-ink">
-              Sign in with your IITJ email
+            <Link href="/signup" className="link text-ink">
+              Sign up with your IITJ email
             </Link>{" "}
             and talk to a coordinator.
           </p>

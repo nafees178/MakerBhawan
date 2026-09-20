@@ -1,77 +1,34 @@
 "use server";
 
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { safeNext } from "@/lib/utils";
 
 export interface LoginState {
-  step: "email" | "code";
   email?: string;
   error?: string;
-  notice?: string;
 }
 
-const INSTITUTE_DOMAIN = "@iitj.ac.in";
+export async function signIn(_prev: LoginState, formData: FormData): Promise<LoginState> {
+  const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  const password = String(formData.get("password") ?? "");
 
-function readEmail(formData: FormData) {
-  return String(formData.get("email") ?? "").trim().toLowerCase();
-}
+  if (!email || !password) return { email, error: "Enter your email and password." };
 
-// One action for both steps, so the form keeps its state between them.
-export async function signIn(prev: LoginState, formData: FormData): Promise<LoginState> {
-  const intent = String(formData.get("intent") ?? "send");
   const supabase = await createClient();
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-  if (intent === "restart") return { step: "email" };
-
-  if (intent === "send" || intent === "resend") {
-    const email = readEmail(formData);
-    if (!/^[^\s@]+@[^\s@]+$/.test(email) || !email.endsWith(INSTITUTE_DOMAIN)) {
-      return { step: "email", email, error: `Use your IIT Jodhpur email (ending in ${INSTITUTE_DOMAIN}).` };
-    }
-
-    // The email carries both a code ({{ .Token }}, typed back in here, works on
-    // any device) and a link (same browser only, lands on /auth/callback). The
-    // code needs a custom email template, which Supabase only allows with custom
-    // SMTP; until then the link is what arrives, so both paths stay wired.
-    const origin = (await headers()).get("origin");
-    const next = safeNext(formData.get("next"));
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        shouldCreateUser: true,
-        emailRedirectTo: origin ? `${origin}/auth/callback?next=${encodeURIComponent(next)}` : undefined,
-      },
-    });
-    if (error) {
-      return {
-        step: intent === "resend" ? "code" : "email",
-        email,
-        error:
-          error.status === 429
-            ? "Too many codes were requested recently. Wait a few minutes and try again."
-            : error.message,
-      };
-    }
-    return { step: "code", email, notice: intent === "resend" ? "A new code is on its way." : undefined };
-  }
-
-  // intent === "verify"
-  const email = prev.email ?? readEmail(formData);
-  const token = String(formData.get("code") ?? "").replace(/\s/g, "");
-  if (!/^\d{6,10}$/.test(token)) {
-    return { step: "code", email, error: "Enter the code from the email." };
-  }
-
-  const { error } = await supabase.auth.verifyOtp({ email, token, type: "email" });
   if (error) {
-    return { step: "code", email, error: "That code is wrong or has expired. Request a new one." };
+    if (error.status === 429) {
+      return { email, error: "Too many attempts. Wait a few minutes and try again." };
+    }
+    if (error.code === "email_not_confirmed") {
+      return { email, error: "This account was never confirmed. Sign up again, or ask a lab administrator." };
+    }
+    // One message for a wrong password and an unknown email, so the form does
+    // not reveal which addresses have accounts.
+    return { email, error: "Email or password is incorrect." };
   }
 
-  // Somebody who clicked "Join" from the home page has no destination in mind,
-  // so they get the welcome page. Somebody who was sent here from /admin does,
-  // and gets bounced straight back to it.
-  const destination = safeNext(formData.get("next"));
-  redirect(destination === "/" ? "/thank-you" : destination);
+  redirect(safeNext(formData.get("next")));
 }

@@ -4,17 +4,15 @@ import { redirect } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { getViewer } from "@/lib/auth";
 import { safeNext } from "@/lib/utils";
-import { LoginForm } from "./LoginForm";
+import { SignupForm } from "./SignupForm";
 
 export const metadata: Metadata = {
-  title: "Log in",
-  description: "Log in to the Anand Rathi Tinkerers' Lab with your email and password.",
-  // Nothing here is useful in a search result, and the page bounces anyone
-  // already signed in.
+  title: "Sign up",
+  description: "Create an account at the Anand Rathi Tinkerers' Lab with your IIT Jodhpur email.",
   robots: { index: false, follow: true },
 };
 
-export default async function LoginPage({
+export default async function SignupPage({
   searchParams,
 }: {
   searchParams: Promise<{ next?: string }>;
@@ -24,18 +22,18 @@ export default async function LoginPage({
 
   if (await getViewer()) redirect(destination);
 
-  const signupHref = destination === "/" ? "/signup" : `/signup?next=${encodeURIComponent(destination)}`;
+  const loginHref = destination === "/" ? "/login" : `/login?next=${encodeURIComponent(destination)}`;
 
   return (
     <div className="max-w-md">
-      <PageHeader label="Account" title="Log in">
-        Enter the email and password you signed up with.
+      <PageHeader label="Account" title="Sign up">
+        For IIT Jodhpur members. Use your institute email and choose a password.
       </PageHeader>
-      <LoginForm next={destination} />
+      <SignupForm next={destination} />
       <p className="mt-8 text-sm text-muted">
-        New here?{" "}
-        <Link href={signupHref} className="link text-ink">
-          Create an account
+        Already have an account?{" "}
+        <Link href={loginHref} className="link text-ink">
+          Log in
         </Link>
       </p>
     </div>

@@ -58,7 +58,7 @@ export default function PrivacyPage() {
         <Section id="accounts" title="If you sign in">
           <p>
             Signing in is for members of IIT Jodhpur. It uses your institute email address and a
-            one-time code, and there is no password to store or lose.
+            password. The password is stored only as a hash by our authentication provider, and we cannot read it.
           </p>
           <p>We keep, for as long as the account exists:</p>
           <ul className="ml-5 list-disc space-y-2">

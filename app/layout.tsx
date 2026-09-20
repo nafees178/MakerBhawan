@@ -135,10 +135,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                     Log in
                   </Link>
                   <Link
-                    href="/login"
+                    href="/signup"
                     className="rounded-md bg-ink px-4 py-2 font-medium text-ground transition-colors hover:bg-white"
                   >
-                    Join
+                    Sign up
                   </Link>
                 </>
               )}
@@ -159,7 +159,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   </form>
                 </>
               ) : (
-                <NavLink href="/login">Log in or join</NavLink>
+                <>
+                  <NavLink href="/login">Log in</NavLink>
+                  <NavLink href="/signup">Sign up</NavLink>
+                </>
               )}
             </MobileMenu>
           </div>
