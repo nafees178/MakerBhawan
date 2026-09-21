@@ -969,6 +969,197 @@ revoke execute on function set_user_role(uuid, app_role) from public, anon;
 grant execute on function set_user_role(uuid, app_role) to authenticated;
 
 
+-- ==== 0008_member_links.sql ====
+-- ============================================================================
+-- ARTL — member links for the 2026 team
+-- ============================================================================
+-- Students list LinkedIn and GitHub; faculty advisors link to their institute
+-- profile instead. `is_placeholder` (0001) now means "details still to come":
+-- the People page shows empty photo and link slots for those rows rather than
+-- hiding them, so a missing LinkedIn reads as pending, not absent.
+-- ============================================================================
+
+alter table members
+  add column if not exists github_url  text,
+  add column if not exists profile_url text;
+
+-- 0007 granted column-level UPDATE nowhere on members (coordinators hold a
+-- table-level grant), so the new columns are writable without another grant.
+
+
+-- ==== 0009_project_mentors_and_banners.sql ====
+-- ============================================================================
+-- ARTL — project mentors and banner images
+-- ============================================================================
+-- The summer projects are each run by a named mentor (sometimes two), and the
+-- projects page now leads with a banner image rather than a bare list. Both are
+-- plain text: `mentors` is a display string ("Amay Shetty and Anjaneya Damle")
+-- rather than a join onto `members`, because mentors are not all listed on the
+-- People page and the pairing is editorial, not structural.
+--
+-- `image_url` holds either a path under /public (the banners shipped with the
+-- repo) or a Supabase Storage public URL (anything uploaded later through
+-- /admin), exactly like `members.photo_url`.
+-- ============================================================================
+
+alter table projects
+  add column if not exists mentors   text,
+  add column if not exists image_url text;
+
+-- 0007 grants insert/update/delete on `projects` at table level, so the new
+-- columns need no further grant.
+
+
+-- ==== 0010_events_as_programmes.sql ====
+-- ============================================================================
+-- ARTL — events become programmes, projects get a permalink
+-- ============================================================================
+-- The events table was built for the Prometeo '26 competition list: seventeen
+-- rows, each a title, a date and a link out to unstop. The public page is now
+-- three standing programmes instead, each of which needs a card on the listing
+-- and a page of its own, so the row has to carry the writing rather than point
+-- at someone else's site.
+--
+--   slug       stable permalink; /events/<slug>
+--   summary    the card. Two or three sentences, no more.
+--   details    the page. Paragraphs separated by a blank line.
+--   image_url  banner, under /public or a Supabase Storage URL, like members.photo_url
+--   kind       'campus' or 'outstation'. Outstation means the team travels.
+--   date_note  what to print when the date is not settled, or when the real
+--              answer is "every 28 February" rather than one timestamp.
+--   sort_order editorial order on the listing; the dates no longer give one.
+--
+-- starts_at loses its NOT NULL for the same reason: an annual fixture with no
+-- announced date is a real state, and parking a made-up timestamp in the column
+-- to satisfy a constraint would put a wrong date in front of a reader.
+-- ============================================================================
+
+alter table events
+  add column if not exists slug       text,
+  add column if not exists summary    text,
+  add column if not exists details    text,
+  add column if not exists image_url  text,
+  add column if not exists kind       text not null default 'campus',
+  add column if not exists date_note  text,
+  add column if not exists sort_order integer not null default 0,
+  -- Two links, because they answer different questions. `link_url` is the
+  -- organiser's own site, which is where a reader goes to enter. `repo_url` is
+  -- the team's code, which is where a reader goes to see what was actually
+  -- built. Collapsing them into one field means losing whichever is second.
+  add column if not exists repo_url   text,
+  -- Alt text belongs with the image, not derived from the title. Two of the
+  -- three banners are not photographs of this lab at all (a prism, another
+  -- team's competition robot, a summit's monogram), so a generated caption
+  -- would describe something the reader is not looking at.
+  add column if not exists image_alt  text;
+
+alter table events alter column starts_at drop not null;
+
+do $$
+begin
+  if not exists (select 1 from pg_constraint where conname = 'events_kind_check') then
+    alter table events add constraint events_kind_check
+      check (kind in ('campus', 'outstation'));
+  end if;
+end $$;
+
+-- Plain, not partial. Postgres already treats NULLs as distinct in a unique
+-- index, so the seventeen archived rows can all keep a null slug, and a
+-- non-partial index is the only kind `on conflict (slug)` can infer from: a
+-- partial one fails with 42P10 unless every upsert repeats the predicate.
+create unique index if not exists events_slug_key on events (slug);
+
+-- The index behind the old ordering assumed a non-null start.
+drop index if exists events_starts_idx;
+create index if not exists events_order_idx on events (sort_order, starts_at desc nulls last);
+
+-- Projects need a permalink of their own for the same reason: the listing now
+-- links each SPARK brief through to its own page.
+--
+-- `programme` is the banner a project ran under. SPARK is Summer Projects for
+-- Advanced Robotics and Kinematics, released by the Robotics Society; the lab
+-- hosts the builds. It is a plain text slug rather than an enum so that next
+-- year's programme needs a row, not a migration. Null means the project was not
+-- run under a named programme.
+alter table projects
+  add column if not exists link_url  text,
+  add column if not exists programme text;
+
+-- 0007 grants insert/update/delete at table level on both tables, so the new
+-- columns inherit those grants and need no further GRANT here.
+
+
+-- ==== 0011_security_hardening.sql ====
+-- ============================================================================
+-- ARTL — security hardening
+-- ============================================================================
+-- Safe to run more than once.
+--
+-- 1. profiles were readable by every signed-in user. Sign-up is open, so that
+--    meant anyone could register and read every member's email, name, roll
+--    number and role. A user now reads their own row; coordinators read all.
+--
+-- 2. The loan functions were executable by anon (the default for a new
+--    function is EXECUTE to PUBLIC). Each body refuses a caller who is not
+--    signed in, but the door should be shut as well as locked.
+--
+-- 3. Only institute addresses may create an account. The sign-up form already
+--    says so, but the form is not a boundary: the auth API accepts any address
+--    from anyone holding the public key. The trigger now refuses the rest, so
+--    inventory can only ever be requested by an @iitj.ac.in account.
+--
+--    What this does NOT do: prove the person owns the address. With "Confirm
+--    email" off, anyone can register someone else's institute address. The
+--    check that stops that is a coordinator, who approves every loan and hands
+--    the hardware over in person.
+-- ============================================================================
+
+-- 1 --------------------------------------------------------------------------
+drop policy if exists profiles_read on profiles;
+
+create policy profiles_read on profiles
+  for select to authenticated
+  using (id = auth.uid() or is_coordinator());
+
+-- 2 --------------------------------------------------------------------------
+-- is_coordinator() and is_admin() are deliberately left alone: policies call
+-- them as the querying role, and anon's read of `projects` and `events` runs
+-- through is_coordinator().
+revoke execute on function request_loan(uuid, integer, text) from public, anon;
+revoke execute on function approve_loan(uuid, date)          from public, anon;
+revoke execute on function reject_loan(uuid, text)           from public, anon;
+revoke execute on function return_loan(uuid)                 from public, anon;
+
+grant execute on function request_loan(uuid, integer, text) to authenticated;
+grant execute on function approve_loan(uuid, date)          to authenticated;
+grant execute on function reject_loan(uuid, text)           to authenticated;
+grant execute on function return_loan(uuid)                 to authenticated;
+
+-- 3 --------------------------------------------------------------------------
+create or replace function handle_new_user()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if new.email is null or new.email not ilike '%@iitj.ac.in' then
+    raise exception 'only IIT Jodhpur email addresses may sign up'
+      using errcode = 'check_violation';
+  end if;
+
+  insert into public.profiles (id, email, full_name, role)
+  values (
+    new.id,
+    new.email,
+    coalesce(new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'name'),
+    'student'::app_role
+  );
+  return new;
+end;
+$$;
+
+
 -- ==== seed.sql ====
 
 -- Generated by scripts/build-seed.mjs. Edit the JSON in data-official/, not this file.
