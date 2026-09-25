@@ -231,6 +231,19 @@ export async function deleteItem(id: string) {
 // ---- people ----------------------------------------------------------------
 const MAX_PHOTO_BYTES = 4 * 1024 * 1024;
 
+// The browser's file name and content type are whatever the sender says they
+// are, so the image is identified by its first bytes. SVG is left out on
+// purpose: it can carry script, and this bucket is public.
+function sniffImage(b: Uint8Array): { type: string; ext: string } | null {
+  const at = (i: number, s: string) => [...s].every((c, k) => b[i + k] === c.charCodeAt(0));
+  if (b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff) return { type: "image/jpeg", ext: "jpg" };
+  if (b[0] === 0x89 && at(1, "PNG")) return { type: "image/png", ext: "png" };
+  if (at(0, "GIF8")) return { type: "image/gif", ext: "gif" };
+  if (at(0, "RIFF") && at(8, "WEBP")) return { type: "image/webp", ext: "webp" };
+  if (at(4, "ftypavif")) return { type: "image/avif", ext: "avif" };
+  return null;
+}
+
 export async function saveMember(_: FormState, f: FormData): Promise<FormState> {
   await requireCoordinator();
   const row = validate(() => ({
@@ -250,13 +263,13 @@ export async function saveMember(_: FormState, f: FormData): Promise<FormState> 
 
   const photo = f.get("photo");
   if (photo instanceof File && photo.size > 0) {
-    if (!photo.type.startsWith("image/")) return { error: "The photo must be an image file." };
     if (photo.size > MAX_PHOTO_BYTES) return { error: "Keep photos under 4 MB." };
+    const image = sniffImage(new Uint8Array(await photo.slice(0, 16).arrayBuffer()));
+    if (!image) return { error: "The photo must be a JPEG, PNG, WebP, GIF or AVIF image." };
 
     const supabase = await createClient();
-    const ext = (photo.name.split(".").pop() ?? "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
-    const path = `members/${crypto.randomUUID()}.${ext || "jpg"}`;
-    const { error } = await supabase.storage.from("media").upload(path, photo, { contentType: photo.type });
+    const path = `members/${crypto.randomUUID()}.${image.ext}`;
+    const { error } = await supabase.storage.from("media").upload(path, photo, { contentType: image.type });
     if (error) return { error: `Photo upload failed: ${error.message}` };
     row.photo_url = supabase.storage.from("media").getPublicUrl(path).data.publicUrl;
   }

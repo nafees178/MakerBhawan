@@ -27,9 +27,17 @@ export function istInputToIso(value: string | null) {
 }
 
 // Only same-site paths, so a crafted ?next= cannot bounce a user off-site
-// after signing in.
+// after signing in. Browsers read a backslash as a slash and drop tabs and
+// newlines from a URL, so "/\\evil.com" and "/\t/evil.com" both mean
+// "//evil.com". Those are refused outright rather than cleaned up.
 export function safeNext(value: unknown, fallback = "/") {
-  return typeof value === "string" && value.startsWith("/") && !value.startsWith("//")
-    ? value
-    : fallback;
+  if (typeof value !== "string") return fallback;
+  if (!value.startsWith("/") || value.startsWith("//")) return fallback;
+  if (/[\\\u0000-\u001f\u007f]/.test(value)) return fallback;
+  try {
+    if (new URL(value, "http://same-site.invalid").origin !== "http://same-site.invalid") return fallback;
+  } catch {
+    return fallback;
+  }
+  return value;
 }

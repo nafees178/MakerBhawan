@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 const securityHeaders = [
   {
     // Prevent MIME-type sniffing
@@ -12,9 +14,10 @@ const securityHeaders = [
     value: 'DENY',
   },
   {
-    // Legacy XSS protection for older browsers
+    // Explicitly off: the legacy XSS auditor is gone from current browsers
+    // and, where it still exists, has been used to create holes, not close them
     key: 'X-XSS-Protection',
-    value: '1; mode=block',
+    value: '0',
   },
   {
     // Control referrer information sent with requests
@@ -33,12 +36,13 @@ const securityHeaders = [
   },
   {
     // Content Security Policy — controls what resources can load
-    // Note: 'unsafe-inline' and 'unsafe-eval' are required by Next.js 13.
-    // Upgrade to Next.js 14+ to use nonce-based CSP instead.
+    // 'unsafe-inline' stays because Next's inline bootstrap scripts carry no
+    // nonce; removing it means nonce-based CSP through proxy.ts. 'unsafe-eval'
+    // is only for the dev server's hot reload, so production does not get it.
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https:",

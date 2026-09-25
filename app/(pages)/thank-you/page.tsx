@@ -32,8 +32,8 @@ export default async function ThankYouPage() {
   return (
     <div className="max-w-3xl">
       <PageHeader label="Account" title={first ? `You are in, ${first}` : "You are in"}>
-        Your account is active and signed in on this browser. It stays signed in, so there is no code
-        to enter next time.
+        Your account is active and signed in on this browser. It stays signed in, so you will not
+        need to log in again on this device.
       </PageHeader>
 
       <ul className="divide-y divide-line border-y border-line">

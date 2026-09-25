@@ -41,7 +41,7 @@ export default function TermsPage() {
         <Section id="accounts" title="Accounts">
           <p>
             Accounts are intended for members of IIT Jodhpur and are created with an institute email
-            address and a one-time code sent to it.
+            address and a password of your choosing.
           </p>
           <p>
             Your account is yours. Do not share access to it, do not sign in on behalf of someone
